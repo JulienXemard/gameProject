@@ -1,1 +1,7 @@
-console.log('hello World')
+function init() {
+
+
+
+
+}
+window.addEventListener('DOMContentLoaded', init)
