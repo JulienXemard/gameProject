@@ -7,11 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
 </head>
-<header>
-  <div id="game-logo">
-    <img src="assets/startLogo.png" alt="Space Invader Image">
-  </div>
-</header>
 <style>
   html {
     height: 100vh;
@@ -23,7 +18,16 @@
 </style>
 <body>
   <main>
-    <div id="intro">
+    <div id="score-board" class="inGame-info">
+      <div id="score" class="inGame-info">Score: <span class="board-color"></span></div>
+      <div id="time" class="inGame-info">Time Left: <span class="board-color"></span></div>
+      <div id="lives" class="inGame-info">Lives: <span class="board-color"></span></div>
+    </div>
+    <div id="timer-text"><strong></strong></div>
+    <div id="intro" class="intro-page">
+      <div id="game-logo">
+        <img src="assets/startLogo.png" alt="Space Invader Image">
+      </div>
       <div id="rules">
         <p><u>Rules: </u><br/>
         <br/>- Use <span class="action-color">'A'</span> to move <span class="action-color">'Left'</span><br/>
@@ -32,11 +36,15 @@
       </div>
       <div class="blink-select">Select a level</div>
       <div id="select-level">
-        <button id="option-one" class="level">Original</button>
-        <button id="option-two" class="level">Orgasmic</button>
+        <button id="original-btn" class="level">Original</button>
+        <button id="sos-btn" class="level">S.O.S</button>
       </div>
     </div>
   </main>
+  <audio id="emperor-yes" class="player" src="./assets/Music/emperorGood.mp3" type="audio-mp3"></audio>
+  <audio id="emperor-laugh" class="player" src="./assets/Music/emperorLaughing.mp3" type="audio-mp3"></audio>
+  <audio id="intro-track" class="player" autoplay loop src="./assets/Music/swIntro.mp3" type="audio-mp3"></audio>
+  <audio id="countDown-Sound" class="player" autoplay loop src="./assets/Music/gameCountDown.mp3" type="audio-mp3"></audio>
   <script src="scripts/background.js"></script>
   <script src="scripts/app.js"></script>
 </body>

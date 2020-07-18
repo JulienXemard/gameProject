@@ -1,3 +1,4 @@
+/* General page */
 * {
 box-sizing: border-box;
 }
@@ -8,6 +9,9 @@ body {
   min-height: 100vh;
   min-height: 100vh;
   font-family: 'Audiowide', cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 div > img {
@@ -17,24 +21,48 @@ div > img {
   max-height: 100%;
 }
 
+/* -------------------------------------- */
+/* Score board info */
+.inGame-info {
+  color: rgba(255, 255, 255, 0.886);
+  font-size: 18px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 50px;
+  
+}
+
+div#timer-text {
+  color: rgba(20, 148, 48, 0.872);
+  font-family: 'Audiowide', cursive;
+  font-size: 80px;
+  text-align: center;
+}
+
+
+/* -------------------------------------- */
+/* Main Game logo */
 div#game-logo {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  margin: 50px;
+  margin: 20px;
+  opacity: 0.75;
 }
 
-#rules {
+/* -------------------------------------- */
+/* Game rule */
+div#rules {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 70px;
-  color: white;
+  margin-top: 40px;
+  color: rgba(255, 255, 255, 0.845);
 }
 
 #rules > p {
-  border: 1px dashed rgba(255, 255, 255, 0.509);
+  /* border: 1px dashed rgba(255, 255, 255, 0.200); */
   margin: 10px;
   padding: 20px 134px;
   font-size: 18px;
@@ -44,9 +72,11 @@ div#game-logo {
   color: rgb(226, 19, 19);
 }
 
+/* -------------------------------------- */
+/* Select option sentence */
 .blink-select {
-  color: rgba(20, 148, 48, 0.626);
-  font-size: 20px;
+  color: rgba(20, 148, 48, 0.694);
+  font-size: 25px;
   text-align: center;
   margin-top: 20px;
   animation: blinker 1s linear infinite;
@@ -64,23 +94,28 @@ div#game-logo {
   }
 }
 
+/* -------------------------------------- */
+/* Game option buttons */
 div#select-level {
   display: flex;
   justify-content: center;
   transform: scale(1.1);
 }
 
-#option-one:hover, #option-two:hover {
-  transition: all 1s transform;
-  background-color: rgba(254, 254, 254, 0.502);
+#original-btn:hover, #sos-btn:hover {
+  transition: all 0.2 ease;
+  background-color: rgba(254, 254, 254, 0.79);
   color: black;
+  outline: none;
 }
 
 .level {
+  font-family: 'Audiowide', cursive;
   background-color: transparent;
   font-size: 20px;
   color: white;
-  margin: 30px 50px;
-  padding: 20px 50px;
-  border: 1px dashed rgba(255, 255, 255, 0.509);
+  margin: 50px 50px;
+  padding: 20px 62px;
+  outline: none;
+  /* border: 1px dashed rgba(255, 255, 255, 0.200); */
 } 
