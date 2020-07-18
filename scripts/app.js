@@ -23,32 +23,30 @@ function init() {
 
   // Functions
   function playSoundIntro(e) {
-    // introTrack.play()
+    console.log('body clicked')
+    introTrack.play()
 
   }
 
   function gameStartTimer(e) {
-    console.log(e.target)
-    console.log('clicked')
     intro.remove()
     emperorLaugh.play()
-
+    gameTimer.innerHTML = timerCount
 
     const countDown = setInterval(() => {
       timerCount--
       gameTimer.innerHTML = timerCount
       if (timerCount <= 0) {
         clearInterval(countDown)
+        gameTimer.remove()
         console.log('Game should start')
       }
     }, 1000)
-
-
     
   }
   
   // Event Listener
-  docBody.addEventListener('mouseenter', playSoundIntro)
+  docBody.addEventListener('click', playSoundIntro)
   orignalOption.addEventListener('click', gameStartTimer)
   sosOption.addEventListener('click', gameStartTimer)
 
