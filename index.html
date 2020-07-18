@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Space Trumpvaders</title>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <header>
-  <div id="timer"></div>
+  <div id="game-logo">
+    <img src="assets/startLogo.png" alt="Space Invader Image">
+  </div>
 </header>
 <style>
   html {
@@ -19,12 +22,19 @@
   }
 </style>
 <body>
-  <img id="trump"src="./assets/Trump.png" alt="">
-  <img id="enemy-ship" src="./assets/enemyShip.png" alt="">
-  <img id="player-ship" src="./assets/playerShip.png" alt="">
-  <img id="player-laser" src="./assets/playerLaser.png" alt="">
-  <img id="enemy-laser" src="./assets/enemyLaser.png" alt="">
-  <img id="start-logo" src="./assets/startLogo.png" alt="">
+  <main>
+    <div id="rules">
+      <p><u>Rules: </u><br/>
+      <br/>- Use <span class="action-color">'A'</span> to move <span class="action-color">'Left'</span><br/>
+      <br/>- Use <span class="action-color">'D'</span> to move <span class="action-color">'Right'</span><br/>
+      <br/>- Use <span class="action-color">'Space Bar'</span> to <span class="action-color">'Shoot'</span></p>
+    </div>
+    <div class="blink-select">Select a level</div>
+    <div id="select-level">
+      <div id="option-one" class="level">Original</div>
+      <div id="option-two" class="level">Orgasmic</div>
+    </div>
+  </main>
   <script src="scripts/background.js"></script>
   <script src="scripts/app.js"></script>
 </body>

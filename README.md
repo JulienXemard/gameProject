@@ -3,7 +3,14 @@
 
 ## Overview
 
-The game aims to offer a unique immersive experience using a javascript (no canvas). A .js file will be used has a background which has been updated to fit the game DNA and latest .js rules.
+The game aims to offer a unique immersive experience using:
+<br/>
+* Javascript
+* CSS
+* HTML 
+<br/>
+
+A .js file will be used has a background which has been updated to fit the game DNA and latest ECMAScript rules (student comprehension).
 
 The game will offer 2 different difficulty levels and will be fully animated.
 
@@ -30,6 +37,7 @@ This project aims to be fun yet should include the right methods recently acquir
 * Research for a all icons and wanted .js background
 * **Prepare folder and files**: HTML | Javascript | CSS
 * Set up all files (boilerplates)
+* Resized | Tested all icons & IMG
 
 
 
@@ -38,10 +46,9 @@ This project aims to be fun yet should include the right methods recently acquir
 
 ## Used Resources
 
-* **Starfield background created in 2004 by Kurt Grigg.**
+* **Starfield background created in 2004 by Kurt Grigg.** |
 [Stack Overflow](https://stackoverflow.com/questions/31680639/non-canvas-javascript-starfield-animation-in-latest-explorer-not-smooth)
 
 
 
 ---
-

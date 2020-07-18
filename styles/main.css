@@ -1,4 +1,85 @@
-h1 {
-  color: white;
-  font-size: 40px;
+* {
+box-sizing: border-box;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-height: 100vh;
+  font-family: 'Audiowide', cursive;
+}
+
+div > img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+div#game-logo {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 50px;
+}
+
+#rules {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+  color: white;
+}
+
+#rules > p {
+  border: 1px dashed rgba(255, 255, 255, 0.509);
+  margin: 10px;
+  padding: 20px 134px;
+  font-size: 18px;
+}
+
+.action-color {
+  color: rgb(226, 19, 19);
+}
+
+.blink-select {
+  color: rgba(20, 148, 48, 0.626);
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  75% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  25% {
+    opacity: 0;
+  }
+}
+
+div#select-level {
+  display: flex;
+  justify-content: center;
+  transform: scale(1.1);
+}
+
+#option-one:hover, #option-two:hover {
+  transition: all 1s transform;
+  background-color: rgba(254, 254, 254, 0.502);
+  color: black;
+}
+
+.level {
+  font-size: 20px;
+  color: white;
+  margin: 30px 50px;
+  padding: 20px 50px;
+  border: 1px dashed rgba(255, 255, 255, 0.509);
+} 
