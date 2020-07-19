@@ -130,7 +130,7 @@ div#timer-text {
 
 .grid {
   background-color: transparent;
-  color: white;
+  /* color: white; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,14 +141,21 @@ div#timer-text {
 }
 
 .grid div {
-  border: 1px solid rgb(245, 241, 241);
+  /* border: 1px solid rgb(245, 241, 241); */
   flex-grow: 1;
   height: calc(100% / 18);
   width: calc(100% / 18);
 }
 
-.grid div.pShip {
+.grid div.playerShip {
   background-image: url('../assets/playerShip.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.grid div.enemyShip {
+  background-image: url('../assets/enemyShip.png');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;

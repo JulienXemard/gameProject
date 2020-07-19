@@ -24,17 +24,29 @@ function init() {
   // grid
   const width = 18
   const gridCount = width * width
-  let cells = []
+  const cells = []
+  //-----------------------
+  // player & enemy var set up
+  const enemiesPositionIndex = [
+    5, 6, 7, 8, 9, 10, 11, 12,
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 65, 66, 130,
+    39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 67,
+    56, 57, 58, 59, 60, 61, 62, 77, 78, 79, 63, 64, 68,
+    82, 83, 84, 85, 76, 75, 80, 81, 69, 86, 74, 87, 92,
+    92, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104,
+    105, 93, 111, 112, 113, 114, 115, 116, 117, 118, 119,
+    120, 121, 122, 131, 132, 133, 134, 135, 136, 137, 138,
+    139, 149, 150, 151, 152, 153, 154, 155, 156
+  ]
+
   let playerPosition = 314
-  
-  
   let timerCount = 5
 
 
   //----------------------- Functions ----------------------//
   // inGame Sounds
   function playSound(e) {
-    // introTrack.play()
+    introTrack.play()
   }
 
   // gameStart timer
@@ -59,20 +71,28 @@ function init() {
     }, 1000)
   }
 
-  // gameGrid creation
+  // gameGrid creation & player position
   function gameGrid(startingPosition) {
     for (let i = 0; i < gridCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i
+      // cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
-    cells[startingPosition].classList.add('pShip')
+    cells[startingPosition].classList.add('playerShip')
   }
   gameGrid(playerPosition)
 
+  function enemyGridPosition() {
+    enemiesPositionIndex.forEach(enemy => {
+      cells[enemy].classList.add('enemyShip')
+    })
+  }
+  enemyGridPosition()
+
+  // spaceShip Player movement
   function playerMovement(e) {
-    cells[playerPosition].classList.remove('pShip')
+    cells[playerPosition].classList.remove('playerShip')
     const x = playerPosition % width
     const y = ~~(playerPosition / width)
     console.log(e.keyCode)
@@ -98,8 +118,12 @@ function init() {
         }
         break
     }
-    cells[playerPosition].classList.add('pShip')
+    cells[playerPosition].classList.add('playerShip')
   }
+
+
+  
+
   //---------------------- Event Listener --------------------//
 
   docBody.addEventListener('click', playSound)
