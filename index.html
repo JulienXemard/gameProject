@@ -11,7 +11,6 @@
   html {
     height: 100vh;
   }
-
   body {
     background-color: #000005;
   }
@@ -24,6 +23,11 @@
       <div id="time" class="inGame-info">Time Left: <span class="board-color"></span></div>
       <div id="lives" class="inGame-info">Lives: <span class="board-color"></span></div>
     </div>
+    <!-- Game grid -->
+    <div id="grid-wrapper">
+      <div class="grid"></div>
+    </div>
+
     <!-- Game Start Countdown -->
     <div id="timer-text"><strong></strong></div>
     <!-- Intro page -->
@@ -44,6 +48,7 @@
       </div>
     </div>
   </main>
+  
   <!-- All game audios -->
   <audio id="intro-track" data-id="intro-track" class="player" autoplay loop src="./assets/Music/intro-track.mp3" type="audio-mp3"></audio>
   <audio id="emperor-good" data-id="emperor-good" class="player" src="./assets/Music/emperor-good.mp3" type="audio-mp3"></audio>

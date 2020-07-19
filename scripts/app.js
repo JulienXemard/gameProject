@@ -13,6 +13,7 @@ function init() {
   const sosOption = document.querySelector('#sos-btn')
   const gameTimer = document.querySelector('#timer-text')
   const optionButtons = document.querySelectorAll('.level')
+  const grid = document.querySelector('.grid')
 
 
   let score = document.querySelector('#score')
@@ -20,24 +21,32 @@ function init() {
   let lives = document.querySelector('#lives')
   
   //--------------------- Game Variables -------------------//
+  // grid
+  const width = 18
+  const gridCount = width * width
+  let cells = []
+  let playerPosition = 0
+  
+  
   let timerCount = 5
+
 
   //----------------------- Functions ----------------------//
   // inGame Sounds
   function playSound(e) {
-    introTrack.play()
+    // introTrack.play()
   }
 
   // gameStart timer
   function gameStartTimer(e) {
     intro.remove()
-
+    // select sound related to gameOption
     if (e.currentTarget === orignalOption) {
       emperorLaugh.play()
     } else if (e.currentTarget === sosOption) {
       emperorGood.play()
     }
-
+    // interval to set timer conditions
     gameTimer.innerHTML = timerCount
     const countDown = setInterval(() => {
       timerCount--
@@ -48,10 +57,22 @@ function init() {
         console.log('Game should start')
       }
     }, 1000)
-    
   }
+
+  // gameGrid creation
+  function gameGrid(startingPosition) {
+    for (let i = 0; i < gridCount; i++) {
+      const cell = document.createElement('div')
+      cell.textContent = i
+      grid.appendChild(cell)
+      cells.push(cell)
+    }
+    cells[startingPosition].classList.add('pShip')
+  }
+  gameGrid(playerPosition)
   
-  // Event Listener
+  //---------------------- Event Listener --------------------//
+
   docBody.addEventListener('click', playSound)
   orignalOption.addEventListener('click', gameStartTimer)
   sosOption.addEventListener('click', gameStartTimer)
