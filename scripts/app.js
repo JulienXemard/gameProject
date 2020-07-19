@@ -25,7 +25,7 @@ function init() {
   const width = 18
   const gridCount = width * width
   let cells = []
-  let playerPosition = 0
+  let playerPosition = 314
   
   
   let timerCount = 5
@@ -70,12 +70,42 @@ function init() {
     cells[startingPosition].classList.add('pShip')
   }
   gameGrid(playerPosition)
-  
+
+  function playerMovement(e) {
+    cells[playerPosition].classList.remove('pShip')
+    const x = playerPosition % width
+    const y = ~~(playerPosition / width)
+    console.log(e.keyCode)
+    switch (e.keyCode) {
+      case 68:
+        if (x < width - 1) {
+          playerPosition++
+        }
+        break
+      case 65:
+        if (x > 0) {
+          playerPosition--
+        }
+        break
+      case 83:
+        if (y < width - 1) {
+          playerPosition += width
+        }
+        break
+      case 87:
+        if (y > 13) {
+          playerPosition -= width
+        }
+        break
+    }
+    cells[playerPosition].classList.add('pShip')
+  }
   //---------------------- Event Listener --------------------//
 
   docBody.addEventListener('click', playSound)
   orignalOption.addEventListener('click', gameStartTimer)
   sosOption.addEventListener('click', gameStartTimer)
+  document.addEventListener('keydown', playerMovement)
 
 }
 window.addEventListener('DOMContentLoaded', init)
