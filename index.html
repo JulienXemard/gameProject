@@ -18,12 +18,15 @@
 </style>
 <body>
   <main>
+    <!-- Board Game info -->
     <div id="score-board" class="inGame-info">
       <div id="score" class="inGame-info">Score: <span class="board-color"></span></div>
       <div id="time" class="inGame-info">Time Left: <span class="board-color"></span></div>
       <div id="lives" class="inGame-info">Lives: <span class="board-color"></span></div>
     </div>
+    <!-- Game Start Countdown -->
     <div id="timer-text"><strong></strong></div>
+    <!-- Intro page -->
     <div id="intro" class="intro-page">
       <div id="game-logo">
         <img src="assets/startLogo.png" alt="Space Invader Image">
@@ -41,10 +44,11 @@
       </div>
     </div>
   </main>
-  <audio id="intro-track" class="player" autoplay loop src="./assets/Music/swIntro.mp3" type="audio-mp3"></audio>
-  <audio id="emperor-yes" class="player" src="./assets/Music/emperorGood.mp3" type="audio-mp3"></audio>
-  <audio id="emperor-laugh" class="player" src="./assets/Music/emperorLaughing.mp3" type="audio-mp3"></audio>
-  <audio id="countDown-Sound" class="player" src="./assets/Music/gameCountDown.mp3" type="audio-mp3"></audio>
+  <!-- All game audios -->
+  <audio id="intro-track" data-id="intro-track" class="player" autoplay loop src="./assets/Music/intro-track.mp3" type="audio-mp3"></audio>
+  <audio id="emperor-good" data-id="emperor-good" class="player" src="./assets/Music/emperor-good.mp3" type="audio-mp3"></audio>
+  <audio id="emperor-laugh" data-id="emperor-laugh" class="player" src="./assets/Music/emperor-laugh.mp3" type="audio-mp3"></audio>
+  <audio id="countDown-sound" class="player" src="./assets/Music/gameCountDown.mp3" type="audio-mp3"></audio>
   <script src="scripts/background.js"></script>
   <script src="scripts/app.js"></script>
 </body>
