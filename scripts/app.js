@@ -15,7 +15,6 @@ function init() {
   const optionButtons = document.querySelectorAll('.level')
   const grid = document.querySelector('.grid')
 
-
   let score = document.querySelector('#score')
   let time = document.querySelector('#time')
   let lives = document.querySelector('#lives')
@@ -25,9 +24,9 @@ function init() {
   const width = 18
   const gridCount = width * width
   const cells = []
-  //-----------------------
-  // player & enemy var set up
-  const enemiesPositionIndex = [
+  //----------------------------
+  // player & enemy grid set up
+  let enemiesPositionIndex = [
     5, 6, 7, 8, 9, 10, 11, 12,
     22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 65, 66, 130,
     39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 67,
@@ -38,15 +37,21 @@ function init() {
     120, 121, 122, 131, 132, 133, 134, 135, 136, 137, 138,
     139, 149, 150, 151, 152, 153, 154, 155, 156
   ]
-
+  const EnemyDirectionsPattern = [
+    -1, -1, 
+    width, 
+    1, 1, 1, 1,
+    width,
+    -1, -1
+  ]
+  let movementCount = 0
   let playerPosition = 314
   let timerCount = 5
 
-
   //----------------------- Functions ----------------------//
-  // inGame Sounds
+  // inGame Sounds 
   function playSound(e) {
-    introTrack.play()
+    // introTrack.play()
   }
 
   // gameStart timer
@@ -75,7 +80,7 @@ function init() {
   function gameGrid(startingPosition) {
     for (let i = 0; i < gridCount; i++) {
       const cell = document.createElement('div')
-      // cell.textContent = i
+      cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -83,12 +88,43 @@ function init() {
   }
   gameGrid(playerPosition)
 
+  // enemyGrid position
   function enemyGridPosition() {
     enemiesPositionIndex.forEach(enemy => {
       cells[enemy].classList.add('enemyShip')
     })
   }
   enemyGridPosition()
+
+  function enemyMoveActions() {
+
+    setInterval(() => {
+      enemiesPositionIndex.forEach(enemy => {
+        cells[enemy].classList.remove('enemyShip')
+      })
+  
+      enemiesPositionIndex = enemiesPositionIndex.map(enemy => {
+        return enemy + EnemyDirectionsPattern[movementCount]
+      })
+  
+      enemiesPositionIndex.forEach(enemy => {
+        cells[enemy].classList.add('enemyShip')
+      })
+      movementCount++
+
+      if (movementCount === EnemyDirectionsPattern.length) {
+        movementCount = 0
+      } else {
+        setTimeout(() => {
+          console.log('Game Should end')
+          return 
+        }, 200)
+      }
+    }, 200)
+  }
+  enemyMoveActions()
+
+
 
   // spaceShip Player movement
   function playerMovement(e) {
@@ -122,7 +158,6 @@ function init() {
   }
 
 
-  
 
   //---------------------- Event Listener --------------------//
 

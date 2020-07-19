@@ -130,7 +130,7 @@ div#timer-text {
 
 .grid {
   background-color: transparent;
-  /* color: white; */
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,6 +143,7 @@ div#timer-text {
 .grid div {
   /* border: 1px solid rgb(245, 241, 241); */
   flex-grow: 1;
+  /* CCS-Trick to spread column evenly */
   height: calc(100% / 18);
   width: calc(100% / 18);
 }
