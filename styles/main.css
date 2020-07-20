@@ -179,3 +179,10 @@ div#timer-text {
   z-index: 1;
   /* background-size: contain; */
 }
+
+.grid div.explosion {
+  background-image: url('../assets/explosion.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background-size: contain; */
+}

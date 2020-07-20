@@ -18,8 +18,8 @@ function init() {
   const gameTimer = document.querySelector('#timer-text')
   const optionButtons = document.querySelectorAll('.level')
   const grid = document.querySelector('.grid')
-  let score = document.querySelector('#score-display')
-  let time = document.querySelector('#time-display')
+  const score = document.querySelector('#score-display')
+  const timeLeft = document.querySelector('#time-display')
   let lives = document.querySelector('#lives-display')
   
   //----------------------- Game Variables ---------------------//
@@ -53,6 +53,7 @@ function init() {
   let timerCount = 5
   let scoreCount = 0
   let livesCount = 3
+  let inGametimer = 120
 
   //-------------------------- Functions ------------------------//
   // inGame Sounds 
@@ -203,14 +204,20 @@ function init() {
 
   function enemyLaser() {
     let randomShots = enemiesPositionIndex[~~(Math.random() * enemiesPositionIndex.length)]
-
+    console.log('Index shot was', randomShots)
+    
     const laserMovement = setInterval(() => {
+
       cells[randomShots].classList.remove('enemyLaser')
       randomShots += width
       cells[randomShots].classList.add('enemyLaser')
 
       if (cells[randomShots].classList.contains('playerShip')) {
         chewySound.play()
+        cells[playerPosition].classList.add('explosion')
+        setTimeout(() => {
+          cells[playerPosition].classList.remove('explosion')
+        }, 500)
         cells[randomShots].classList.remove('enemyLaser')
         clearInterval(laserMovement)
       }
@@ -218,6 +225,19 @@ function init() {
   }
   enemyLaser()
 
+  function gameTimeLeft() {
+    timeLeft.innerHTML = inGametimer
+    const inGameCountDown = setInterval(() => {
+      inGametimer--
+      timeLeft.innerHTML = inGametimer
+      if (inGametimer === 0) {
+        clearInterval(inGameCountDown)
+        console.log('Game should end')
+        return
+      }
+    }, 1000)
+  }
+  // gameTimeLeft()
   //----------------------- Event Listener ----------------------//
 
   docBody.addEventListener('click', playSound)
