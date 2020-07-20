@@ -1,11 +1,12 @@
 function init() {
 
-  //--------------------- DOM elements ---------------------//
+  //------------------------- DOM elements -----------------------//
   // All tracks
   const introTrack = document.querySelector('#intro-track')
   const countDownSound = document.querySelector('#countDown-sound')
   const emperorLaugh = document.querySelector('#emperor-laugh')
   const emperorGood = document.querySelector('#emperor-good')
+  const laserSound = document.querySelector('#laser-sound')
   //--------------------------------------------------------------
   const docBody = document.querySelector('body')
   const intro = document.querySelector('#intro')
@@ -19,12 +20,12 @@ function init() {
   let time = document.querySelector('#time')
   let lives = document.querySelector('#lives')
   
-  //--------------------- Game Variables -------------------//
+  //----------------------- Game Variables ---------------------//
   // grid
   const width = 18
   const gridCount = width * width
   const cells = []
-  //----------------------------
+  //------------------------------
   // player & enemy grid set up
   let enemiesPositionIndex = [
     5, 6, 7, 8, 9, 10, 11, 12,
@@ -47,8 +48,10 @@ function init() {
   let movementCount = 0
   let playerPosition = 314
   let timerCount = 5
+  let scoreCount = 0
+  let livesCount = 3
 
-  //----------------------- Functions ----------------------//
+  //-------------------------- Functions ------------------------//
   // inGame Sounds 
   function playSound(e) {
     // introTrack.play()
@@ -96,75 +99,98 @@ function init() {
   }
   enemyGridPosition()
 
-  function enemyMoveActions() {
-
-    setInterval(() => {
-      enemiesPositionIndex.forEach(enemy => {
-        cells[enemy].classList.remove('enemyShip')
-      })
+  // Initialise enemyMovements
+  // function enemyMoveActions() {
+  //   setInterval(() => {
+  //     enemiesPositionIndex.forEach(enemy => {
+  //       cells[enemy].classList.remove('enemyShip')
+  //     })
   
-      enemiesPositionIndex = enemiesPositionIndex.map(enemy => {
-        return enemy + EnemyDirectionsPattern[movementCount]
-      })
+  //     enemiesPositionIndex = enemiesPositionIndex.map(enemy => {
+  //       return enemy + EnemyDirectionsPattern[movementCount]
+  //     })
   
-      enemiesPositionIndex.forEach(enemy => {
-        cells[enemy].classList.add('enemyShip')
-      })
-      movementCount++
+  //     enemiesPositionIndex.forEach(enemy => {
+  //       cells[enemy].classList.add('enemyShip')
+  //     })
+  //     movementCount++
 
-      if (movementCount === EnemyDirectionsPattern.length) {
-        movementCount = 0
-      } else {
-        setTimeout(() => {
-          console.log('Game Should end')
-          return 
-        }, 200)
-      }
-    }, 200)
-  }
-  enemyMoveActions()
+  //     if (movementCount === EnemyDirectionsPattern.length) {
+  //       movementCount = 0
 
-
+  //     } else {
+  //       setTimeout(() => {
+  //         console.log('Game Over')
+  //         console.log('Game Should end')
+  //         return 
+  //       }, 2000)
+  //     }
+  //   }, 200)
+  // }
+  // enemyMoveActions()
 
   // spaceShip Player movement
   function playerMovement(e) {
     cells[playerPosition].classList.remove('playerShip')
     const x = playerPosition % width
     const y = ~~(playerPosition / width)
-    console.log(e.keyCode)
+    // console.log(e.keyCode)
     switch (e.keyCode) {
       case 68:
         if (x < width - 1) {
           playerPosition++
+          console.log('Move right')
         }
         break
       case 65:
         if (x > 0) {
           playerPosition--
+          console.log('Move Left')
         }
         break
       case 83:
         if (y < width - 1) {
           playerPosition += width
+          console.log('Move Down')
         }
         break
       case 87:
         if (y > 13) {
           playerPosition -= width
+          console.log('Move Up')
         }
         break
     }
     cells[playerPosition].classList.add('playerShip')
   }
 
+  function playerLaser(e) {
+    let laserIndex = playerPosition
+    
+    if (e.keyCode === 32) {
+      console.log('Shooting')
+      laserSound.play()
+      e.preventDefault()
+    }
+    const laserMovement = setInterval(() => {
+      if (laserIndex - width >= 0) {
+        cells[laserIndex].classList.remove('playerLaser')
+        laserIndex -= width
+        cells[laserIndex].classList.add('playerLaser')
 
+      } else {
+        cells[laserIndex].classList.remove('playerLaser')
+      }
+    }, 200)
+  }
 
-  //---------------------- Event Listener --------------------//
+  //----------------------- Event Listener ----------------------//
 
   docBody.addEventListener('click', playSound)
   orignalOption.addEventListener('click', gameStartTimer)
   sosOption.addEventListener('click', gameStartTimer)
   document.addEventListener('keydown', playerMovement)
+  document.addEventListener('keydown', playerLaser)
 
 }
 window.addEventListener('DOMContentLoaded', init)

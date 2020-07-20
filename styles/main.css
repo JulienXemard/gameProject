@@ -115,7 +115,7 @@ div#select-level {
 div#timer-text {
   color: rgba(20, 148, 48, 0.872);
   font-family: 'Audiowide', cursive;
-  font-size: 80px;
+  font-size: 150px;
   text-align: center;
 }
 
@@ -136,14 +136,14 @@ div#timer-text {
   justify-content: center;
   flex-wrap: wrap;
   height: 100%;
-  height: 900px;
-  width: 900px;
+  height: 1000px;
+  width: 1000px;
 }
 
 .grid div {
   /* border: 1px solid rgb(245, 241, 241); */
   flex-grow: 1;
-  /* CCS-Trick to spread column evenly */
+  /* CCS-Trick to add columns evenly */
   height: calc(100% / 18);
   width: calc(100% / 18);
 }
@@ -151,13 +151,17 @@ div#timer-text {
 .grid div.playerShip {
   background-image: url('../assets/playerShip.png');
   background-repeat: no-repeat;
-  background-size: contain;
-  cursor: pointer;
+  /* background-size: contain; */
+}
+
+.grid div.playerLaser {
+  background-image: url('../assets/playerLaser.png');
+  background-repeat: no-repeat;
+  /* background-size: contain; */
 }
 
 .grid div.enemyShip {
   background-image: url('../assets/enemyShip.png');
   background-repeat: no-repeat;
-  background-size: contain;
-  cursor: pointer;
+  /* background-size: contain; */
 }
