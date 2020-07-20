@@ -19,7 +19,7 @@
   <main>
     <!-- Board Game info -->
     <div id="score-board" class="inGame-info">
-      <div id="score">Score: <span id="score-display" class="board-color">scoreDisplayInner</span></div>
+      <div id="score">Score: <span id="score-display" class="board-color">0</span></div>
       <div id="time">Time Left: <span id="time-display" class="board-color">timeDisplayInner</span></div>
       <div id="lives">Lives: <span id="lives-display" class="board-color">livesDisplayInner</span></div>
     </div>
@@ -50,7 +50,9 @@
   </main>
 
   <!-- All game audios -->
-  <audio id="laser-sound" type="audio-wav" class="player" src="./assets/Music/laser.wav"></audio>
+  <audio id="chewy-sound" class="player" src="./assets/Music/chewy-sound.mp3"></audio>
+  <audio id="explosion-sound" class="player" src="./assets/Music/explosion.wav"></audio>
+  <audio id="laser-sound" class="player" src="./assets/Music/laser.wav" type="audio-wav"></audio>
   <audio id="intro-track" data-id="intro-track" class="player" autoplay loop src="./assets/Music/intro-track.mp3" type="audio-mp3"></audio>
   <audio id="emperor-good" data-id="emperor-good" class="player" src="./assets/Music/emperor-good.mp3" type="audio-mp3"></audio>
   <audio id="emperor-laugh" data-id="emperor-laugh" class="player" src="./assets/Music/emperor-laugh.mp3" type="audio-mp3"></audio>

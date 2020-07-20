@@ -7,6 +7,9 @@ function init() {
   const emperorLaugh = document.querySelector('#emperor-laugh')
   const emperorGood = document.querySelector('#emperor-good')
   const laserSound = document.querySelector('#laser-sound')
+  const explosionSound = document.querySelector('#explosion-sound')
+  const chewySound = document.querySelector('#chewy-sound')
+  
   //--------------------------------------------------------------
   const docBody = document.querySelector('body')
   const intro = document.querySelector('#intro')
@@ -15,7 +18,6 @@ function init() {
   const gameTimer = document.querySelector('#timer-text')
   const optionButtons = document.querySelectorAll('.level')
   const grid = document.querySelector('.grid')
-
   let score = document.querySelector('#score-display')
   let time = document.querySelector('#time-display')
   let lives = document.querySelector('#lives-display')
@@ -175,7 +177,6 @@ function init() {
       e.preventDefault()
     }
     const laserMovement = setInterval(() => {
-
       if (laserIndex - width >= 0) {
         cells[laserIndex].classList.remove('playerLaser')
         laserIndex -= width
@@ -185,14 +186,37 @@ function init() {
       }
 
       if (cells[laserIndex].classList.contains('enemyShip')) {
+        explosionSound.play()
         clearInterval(laserMovement)
         cells[laserIndex].classList.remove('playerLaser')
         scoreCount += 1000
-        score.innerHTML = scoreCount
+        score.innerHTML = scoreCount.toLocaleString('en')
         cells[laserIndex].classList.remove('enemyShip')
+      }
+
+      if (enemiesPositionIndex === 0) {
+        console.log('The game should stop')
+        console.log('Function gameWon')
       }
     }, 200)
   }
+
+  function enemyLaser() {
+    let randomShots = enemiesPositionIndex[~~(Math.random() * enemiesPositionIndex.length)]
+
+    const laserMovement = setInterval(() => {
+      cells[randomShots].classList.remove('enemyLaser')
+      randomShots += width
+      cells[randomShots].classList.add('enemyLaser')
+
+      if (cells[randomShots].classList.contains('playerShip')) {
+        chewySound.play()
+        cells[randomShots].classList.remove('enemyLaser')
+        clearInterval(laserMovement)
+      }
+    }, 350)
+  }
+  enemyLaser()
 
   //----------------------- Event Listener ----------------------//
 

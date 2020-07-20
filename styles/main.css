@@ -168,5 +168,14 @@ div#timer-text {
 .grid div.enemyShip {
   background-image: url('../assets/enemyShip.png');
   background-repeat: no-repeat;
+  z-index: 2;
   /* background-size: contain; */
-} 
+}
+
+.grid div.enemyLaser {
+  background-image: url('../assets/enemyLaser.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+  /* background-size: contain; */
+}
