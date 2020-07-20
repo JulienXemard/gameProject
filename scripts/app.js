@@ -41,6 +41,18 @@ function init() {
     120, 121, 122, 131, 132, 133, 134, 135, 136, 137, 138,
     139, 149, 150, 151, 152, 153, 154, 155, 156
   ]
+  // let enemiesPositionIndex = [
+  //   1, 19, 37, 55, 73, 91, 109, 127, 145,
+  //   20, 38, 39, 58, 77, 96, 115, 134, 153,
+  //   135, 117, 99, 81, 63, 45, 27, 9, 191,
+  //   11, 29, 47, 65, 83, 101, 119, 137, 155,
+  //   13, 14, 15, 16, 34, 52, 70, 88, 106, 124,
+  //   142, 160, 156, 157, 158, 159, 181, 182,
+  //   183, 184, 185, 186, 187, 188, 189, 190,
+  //   192, 193, 194, 195, 196, 12, 199, 200,
+  //   201, 202, 203, 204, 205, 206, 207, 208,
+  //   209, 210, 211, 212, 213, 214
+  // ]
   const EnemyDirectionsPattern = [
     -1, -1, 
     width, 
@@ -99,6 +111,8 @@ function init() {
   function enemyGridPosition() {
     enemiesPositionIndex.forEach(enemy => {
       cells[enemy].classList.add('enemyShip')
+      // cells[enemy].classList.add('trumpFace')
+      console.log(enemy)
     })
   }
   enemyGridPosition()
@@ -211,7 +225,7 @@ function init() {
       cells[randomShots].classList.remove('enemyLaser')
       randomShots += width
       cells[randomShots].classList.add('enemyLaser')
-
+    
       if (cells[randomShots].classList.contains('playerShip')) {
         chewySound.play()
         cells[playerPosition].classList.add('explosion')
@@ -219,9 +233,8 @@ function init() {
           cells[playerPosition].classList.remove('explosion')
         }, 500)
         cells[randomShots].classList.remove('enemyLaser')
-        clearInterval(laserMovement)
       }
-    }, 350)
+    }, 300)
   }
   enemyLaser()
 

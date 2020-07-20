@@ -172,6 +172,13 @@ div#timer-text {
   /* background-size: contain; */
 }
 
+.grid div.trumpFace {
+  background-image: url('../assets/Trump.png');
+  background-repeat: no-repeat;
+  z-index: 2;
+  background-size: contain;
+}
+
 .grid div.enemyLaser {
   background-image: url('../assets/enemyLaser.png');
   background-repeat: no-repeat;
