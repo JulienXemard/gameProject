@@ -112,6 +112,10 @@ div#select-level {
   
 }
 
+.board-color {
+  color: rgb(226, 19, 19);
+}
+
 div#timer-text {
   color: rgba(20, 148, 48, 0.872);
   font-family: 'Audiowide', cursive;
@@ -165,4 +169,4 @@ div#timer-text {
   background-image: url('../assets/enemyShip.png');
   background-repeat: no-repeat;
   /* background-size: contain; */
-}
+} 

@@ -16,9 +16,9 @@ function init() {
   const optionButtons = document.querySelectorAll('.level')
   const grid = document.querySelector('.grid')
 
-  let score = document.querySelector('#score')
-  let time = document.querySelector('#time')
-  let lives = document.querySelector('#lives')
+  let score = document.querySelector('#score-display')
+  let time = document.querySelector('#time-display')
+  let lives = document.querySelector('#lives-display')
   
   //----------------------- Game Variables ---------------------//
   // grid
@@ -27,6 +27,7 @@ function init() {
   const cells = []
   //------------------------------
   // player & enemy grid set up
+  // selecting the arr index for enemies
   let enemiesPositionIndex = [
     5, 6, 7, 8, 9, 10, 11, 12,
     22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 65, 66, 130,
@@ -181,6 +182,14 @@ function init() {
         cells[laserIndex].classList.add('playerLaser')
       } else {
         cells[laserIndex].classList.remove('playerLaser')
+      }
+
+      if (cells[laserIndex].classList.contains('enemyShip')) {
+        clearInterval(laserMovement)
+        cells[laserIndex].classList.remove('playerLaser')
+        scoreCount += 1000
+        score.innerHTML = scoreCount
+        cells[laserIndex].classList.remove('enemyShip')
       }
     }, 200)
   }
