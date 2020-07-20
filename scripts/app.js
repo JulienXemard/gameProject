@@ -83,7 +83,7 @@ function init() {
   function gameGrid(startingPosition) {
     for (let i = 0; i < gridCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i
+      // cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -165,19 +165,20 @@ function init() {
   }
 
   function playerLaser(e) {
-    let laserIndex = playerPosition
-    
+    let laserIndex
+    console.log(e.keyCode)
     if (e.keyCode === 32) {
+      laserIndex = playerPosition
       console.log('Shooting')
       laserSound.play()
       e.preventDefault()
     }
     const laserMovement = setInterval(() => {
+
       if (laserIndex - width >= 0) {
         cells[laserIndex].classList.remove('playerLaser')
         laserIndex -= width
         cells[laserIndex].classList.add('playerLaser')
-
       } else {
         cells[laserIndex].classList.remove('playerLaser')
       }

@@ -157,6 +157,7 @@ div#timer-text {
 .grid div.playerLaser {
   background-image: url('../assets/playerLaser.png');
   background-repeat: no-repeat;
+  background-position: center;
   /* background-size: contain; */
 }
 
