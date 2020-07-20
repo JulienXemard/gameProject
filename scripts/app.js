@@ -219,7 +219,7 @@ function init() {
   function enemyLaser() {
     let randomShots = enemiesPositionIndex[~~(Math.random() * enemiesPositionIndex.length)]
     console.log('Index shot was', randomShots)
-    
+
     const laserMovement = setInterval(() => {
 
       cells[randomShots].classList.remove('enemyLaser')
@@ -231,7 +231,7 @@ function init() {
         cells[playerPosition].classList.add('explosion')
         setTimeout(() => {
           cells[playerPosition].classList.remove('explosion')
-        }, 500)
+        }, 400)
         cells[randomShots].classList.remove('enemyLaser')
       }
     }, 300)
