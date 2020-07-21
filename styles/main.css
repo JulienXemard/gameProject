@@ -23,10 +23,14 @@ div > img {
 
 /* -------------------------------------- */
 
-div#game-over {
+.game-over {
   display: flex;
   justify-content: center;
   animation: blinker 2s linear infinite;
+}
+
+div.game-over.hidden {
+  display: none;
 }
 
 /* Main Game logo */
@@ -113,7 +117,7 @@ div#score-board.inGame-info {
   color: rgba(255, 255, 255, 0.886);
   font-size: 18px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 50px;
 }
@@ -183,14 +187,12 @@ div.lives {
 .grid div.enemyShip {
   background-image: url('../assets/enemyShip.png');
   background-repeat: no-repeat;
-  z-index: 2;
   /* background-size: contain; */
 }
 
 .grid div.trumpFace {
   background-image: url('../assets/Trump.png');
   background-repeat: no-repeat;
-  z-index: 2;
   /* background-size: contain; */
 }
 
@@ -198,7 +200,6 @@ div.lives {
   background-image: url('../assets/enemyLaser.png');
   background-repeat: no-repeat;
   background-position: center;
-  z-index: 1;
   /* background-size: contain; */
 }
 

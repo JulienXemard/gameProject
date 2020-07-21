@@ -17,7 +17,7 @@ function init() {
   const gameTimer = document.querySelector('#timer-text')
   const optionButtons = document.querySelectorAll('.level')
   const grid = document.querySelector('.grid')
-  const gameOver = document.querySelector('#game-over')
+  const gameOver = document.querySelector('.game-over')
   const score = document.querySelector('#score-display')
   const timeLeft = document.querySelector('#time-display')
   const Liveship1 = document.querySelector('#live-1')
@@ -68,9 +68,8 @@ function init() {
   let timerCount = 5
   let scoreCount = 0
   let livesCount = 3
-  let inGametimer = 120
+  let inGametimer = 10
 
-  // gameOver.remove()
   // intro.remove()
   //-------------------------- Functions ------------------------//
   // inGame Sounds 
@@ -143,7 +142,7 @@ function init() {
         movementCount = 0
       }
 
-      enemiesPositionIndex.forSome(enemy => {
+      enemiesPositionIndex.some(enemy => {
         if (enemy >= 289 && enemy <= 303) {
           clearInterval(enemiesActions)
           setTimeout(() => {
@@ -228,28 +227,36 @@ function init() {
   }
 
   function enemyLaser() {
-    let randomShots = enemiesPositionIndex[~~(Math.random() * enemiesPositionIndex.length)]
-    console.log('Shot from index', randomShots)
 
-    const laserMovement = setInterval(() => {
+    const randomLaser = []
 
-      cells[randomShots].classList.remove('enemyLaser')
-      randomShots += width
-      cells[randomShots].classList.add('enemyLaser')
-    
-      if (cells[randomShots].classList.contains('playerShip')) {
-        clearInterval(laserMovement)
-        cells[randomShots].classList.remove('enemyLaser')
-        chewySound.play()
-        cells[playerPosition].classList.add('explosion')
-        livesCount--
-        Liveship1.remove()
-        setTimeout(() => {
-          cells[playerPosition].classList.remove('explosion')
-          cells[playerPosition].classList.remove('explosion')
-        }, 400)
-      } 
-    }, 200)
+    for (let i = 0; i < 5; i++) {
+      randomLaser.push(enemiesPositionIndex[~~(Math.random() * enemiesPositionIndex.length)])
+    }
+    console.log('random shot', randomLaser)
+
+    randomLaser.forEach(enemy => {
+      const laserMovement = setInterval(() => {
+
+        cells[enemy].classList.remove('enemyLaser')
+        enemy += width
+        cells[enemy].classList.add('enemyLaser')
+        // clearInterval(laserMovement)
+      
+        if (cells[enemy].classList.contains('playerShip')) {
+          clearInterval(laserMovement)
+          cells[enemy].classList.remove('enemyLaser')
+          chewySound.play()
+          cells[playerPosition].classList.add('explosion')
+          livesCount--
+          Liveship1.remove()
+          setTimeout(() => {
+            cells[playerPosition].classList.remove('explosion')
+            cells[playerPosition].classList.remove('explosion')
+          }, 400)
+        }
+      }, 200)
+    })
   }
   enemyLaser()
 
@@ -262,12 +269,12 @@ function init() {
       if (inGametimer === 0) {
         clearInterval(inGameCountDown)
         console.log('Game should end')
+        gameOver.classList.remove('hidden')
         return
       }
     }, 1000)
   }
-  // gameTimeLeft()
-
+  gameTimeLeft()
 
 
   //----------------------- Event Listener ----------------------//
