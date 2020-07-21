@@ -99,7 +99,7 @@ function init() {
   function gameGrid(startingPosition) {
     for (let i = 0; i < gridCount; i++) {
       const cell = document.createElement('div')
-      // cell.textContent = i
+      cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -118,33 +118,37 @@ function init() {
   enemyGridPosition()
 
   // Initialise enemyMovements
-  // function enemyMoveActions() {
-  //   setInterval(() => {
-  //     enemiesPositionIndex.forEach(enemy => {
-  //       cells[enemy].classList.remove('enemyShip')
-  //     })
+  function enemyMoveActions() {
+    const enemiesActions = setInterval(() => {
+      enemiesPositionIndex.forEach(enemy => {
+        cells[enemy].classList.remove('enemyShip')
+      })
   
-  //     enemiesPositionIndex = enemiesPositionIndex.map(enemy => {
-  //       return enemy + EnemyDirectionsPattern[movementCount]
-  //     })
+      enemiesPositionIndex = enemiesPositionIndex.map(enemy => {
+        return enemy + EnemyDirectionsPattern[movementCount]
+      })
   
-  //     enemiesPositionIndex.forEach(enemy => {
-  //       cells[enemy].classList.add('enemyShip')
-  //     })
-  //     movementCount++
+      enemiesPositionIndex.forEach(enemy => {
+        cells[enemy].classList.add('enemyShip')
+      })
+      movementCount++
 
-  //     if (movementCount === EnemyDirectionsPattern.length) {
-  //       movementCount = 0
+      if (movementCount === EnemyDirectionsPattern.length) {
+        movementCount = 0
 
-  //     } else {
-  //       setTimeout(() => {
-  //         console.log('Game Over')
-  //         console.log('Game Should end')
-  //         return 
-  //       }, 2000)
-  //     }
-  //   }, 200)
-  // }
+      }
+      enemiesPositionIndex.forSome(enemy => {
+        if (enemy >= 289 && enemy <= 303) {
+          setTimeout(() => {
+            console.log('Game Over')
+            console.log('Game Should end')
+            // clearInterval(enemiesActions)
+            // gameOver()
+          }, 2000)
+        }
+      })
+    }, 200)
+  }
   // enemyMoveActions()
 
   // spaceShip Player movement
@@ -217,8 +221,9 @@ function init() {
   }
 
   function enemyLaser() {
+
     let randomShots = enemiesPositionIndex[~~(Math.random() * enemiesPositionIndex.length)]
-    console.log('Index shot was', randomShots)
+    console.log('Shot from index', randomShots)
 
     const laserMovement = setInterval(() => {
 
@@ -227,14 +232,15 @@ function init() {
       cells[randomShots].classList.add('enemyLaser')
     
       if (cells[randomShots].classList.contains('playerShip')) {
+        clearInterval(laserMovement)
+        cells[randomShots].classList.remove('enemyLaser')
         chewySound.play()
         cells[playerPosition].classList.add('explosion')
         setTimeout(() => {
           cells[playerPosition].classList.remove('explosion')
-        }, 400)
-        cells[randomShots].classList.remove('enemyLaser')
-      }
-    }, 300)
+        }, 300)
+      } 
+    }, 1000)
   }
   enemyLaser()
 

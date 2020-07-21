@@ -176,7 +176,7 @@ div#timer-text {
   background-image: url('../assets/Trump.png');
   background-repeat: no-repeat;
   z-index: 2;
-  background-size: contain;
+  /* background-size: contain; */
 }
 
 .grid div.enemyLaser {
