@@ -104,7 +104,7 @@ function init() {
   function gameGrid(startingPosition) {
     for (let i = 0; i < gridCount; i++) {
       const cell = document.createElement('div')
-      // cell.textContent = i
+      cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -117,7 +117,7 @@ function init() {
     enemiesPositionIndex.forEach(enemy => {
       cells[enemy].classList.add('enemyShip')
       // cells[enemy].classList.add('trumpFace')
-      console.log(enemy)
+      // console.log(enemy)
     })
   }
   enemyGridPosition()
@@ -157,7 +157,7 @@ function init() {
       })
     }, 200)
   }
-  enemyMoveActions()
+  // enemyMoveActions()
 
   //----------------------------------------------------------
   // spaceShip Player movement
@@ -240,21 +240,21 @@ function init() {
     randomLaser.forEach(enemyLaser => {
       const laserMovement = setInterval(() => {
 
-        cells[enemyLaser].classList.remove('enemyLaser')
-        enemyLaser += width
-        cells[enemyLaser].classList.add('enemyLaser')
-        // clearInterval(laserMovement)
-
-        if (cells[enemyLaser] >= enemiesPositionIndex[323]){
+        if (enemyLaser + width <= 324) {
+          cells[enemyLaser].classList.remove('enemyLaser')
+          enemyLaser += width
+          cells[enemyLaser].classList.add('enemyLaser')
+        } else {
           cells[enemyLaser].classList.remove('enemyLaser')
         }
       
         if (cells[enemyLaser].classList.contains('playerShip')) {
+          chewySound.play()
           clearInterval(laserMovement)
           cells[enemyLaser].classList.remove('enemyLaser')
-          chewySound.play()
           cells[playerPosition].classList.add('explosion')
           livesCount--
+          console.log(livesCount)
           // lostSoul()
           const chewy = setTimeout(() => {
             cells[playerPosition].classList.remove('explosion')
