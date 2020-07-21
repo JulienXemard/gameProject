@@ -229,29 +229,33 @@ function init() {
   }
 
   function enemyLaser() {
-
     const randomLaser = []
 
     for (let i = 0; i < 5; i++) {
       randomLaser.push(enemiesPositionIndex[~~(Math.random() * enemiesPositionIndex.length)])
+
     }
     console.log('random shot', randomLaser)
 
-    randomLaser.forEach(enemy => {
+    randomLaser.forEach(enemyLaser => {
       const laserMovement = setInterval(() => {
 
-        cells[enemy].classList.remove('enemyLaser')
-        enemy += width
-        cells[enemy].classList.add('enemyLaser')
+        cells[enemyLaser].classList.remove('enemyLaser')
+        enemyLaser += width
+        cells[enemyLaser].classList.add('enemyLaser')
         // clearInterval(laserMovement)
+
+        if (cells[enemyLaser] >= enemiesPositionIndex[323]){
+          cells[enemyLaser].classList.remove('enemyLaser')
+        }
       
-        if (cells[enemy].classList.contains('playerShip')) {
+        if (cells[enemyLaser].classList.contains('playerShip')) {
           clearInterval(laserMovement)
-          cells[enemy].classList.remove('enemyLaser')
+          cells[enemyLaser].classList.remove('enemyLaser')
           chewySound.play()
           cells[playerPosition].classList.add('explosion')
           livesCount--
-          lostSoul
+          lostSoul()
           const chewy = setTimeout(() => {
             cells[playerPosition].classList.remove('explosion')
             clearTimeout(chewy)
