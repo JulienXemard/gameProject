@@ -209,3 +209,7 @@ div.lives {
   background-position: center;
   /* background-size: contain; */
 }
+
+img .pShip.hidden {
+  display: none;
+}
