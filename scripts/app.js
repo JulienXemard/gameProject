@@ -145,6 +145,21 @@ function init() {
       }
 
       enemiesPositionIndex.some(enemy => {
+        if (cells[enemy].classList.contains('playerShip')) {
+          chewySound.play()
+          cells[playerPosition].classList.remove('playerShip')
+          cells[enemy].classList.remove('enemyShip')
+          const chewy = setTimeout(() => {
+            cells[playerPosition].classList.add('explosion')
+            clearTimeout(chewy)
+            clearInterval(enemiesActions)
+            console.log('enemy should disappear')
+            console.log('gameOver func()')
+          }, 500)
+        }
+      })
+
+      enemiesPositionIndex.some(enemy => {
         if (enemy >= 306 && enemy <= 323) {
           clearInterval(enemiesActions)
           setTimeout(() => {
@@ -157,7 +172,7 @@ function init() {
       })
     }, 200)
   }
-  // enemyMoveActions()
+  enemyMoveActions()
 
   //----------------------------------------------------------
   // spaceShip Player movement
@@ -214,11 +229,11 @@ function init() {
 
       if (cells[laserIndex].classList.contains('enemyShip')) {
         explosionSound.play()
+        cells[laserIndex].classList.remove('enemyShip')
         clearInterval(laserMovement)
         cells[laserIndex].classList.remove('playerLaser')
         scoreCount += 1000
         score.innerHTML = scoreCount.toLocaleString('en')
-        cells[laserIndex].classList.remove('enemyShip')
       }
 
       if (enemiesPositionIndex === 0) {
