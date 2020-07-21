@@ -22,6 +22,13 @@ div > img {
 }
 
 /* -------------------------------------- */
+
+div#game-over {
+  display: flex;
+  justify-content: center;
+  animation: blinker 2s linear infinite;
+}
+
 /* Main Game logo */
 div#game-logo {
   display: flex;
@@ -59,7 +66,7 @@ div#rules {
   font-size: 25px;
   text-align: center;
   margin-top: 20px;
-  animation: blinker 1s linear infinite;
+  animation: blinker 2s linear infinite;
 }
 
 @keyframes blinker {
@@ -102,14 +109,13 @@ div#select-level {
 
 /* -------------------------------------- */
 /* Score board info */
-.inGame-info {
+div#score-board.inGame-info {
   color: rgba(255, 255, 255, 0.886);
   font-size: 18px;
   display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
+  justify-content: space-around;
+  align-items: center;
   padding: 50px;
-  
 }
 
 .board-color {
@@ -121,6 +127,15 @@ div#timer-text {
   font-family: 'Audiowide', cursive;
   font-size: 150px;
   text-align: center;
+}
+
+div.lives {
+  display: flex;
+  align-items: center;
+}
+
+.ship {
+  margin-left: 10px;
 }
 
 /* -------------------------------------- */

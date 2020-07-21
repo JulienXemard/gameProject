@@ -1,5 +1,4 @@
 function init() {
-
   //------------------------- DOM elements -----------------------//
   // All tracks
   const introTrack = document.querySelector('#intro-track')
@@ -9,7 +8,7 @@ function init() {
   const laserSound = document.querySelector('#laser-sound')
   const explosionSound = document.querySelector('#explosion-sound')
   const chewySound = document.querySelector('#chewy-sound')
-  
+  const gameOverSound = document.querySelector('#gameOver-sound')
   //--------------------------------------------------------------
   const docBody = document.querySelector('body')
   const intro = document.querySelector('#intro')
@@ -18,8 +17,12 @@ function init() {
   const gameTimer = document.querySelector('#timer-text')
   const optionButtons = document.querySelectorAll('.level')
   const grid = document.querySelector('.grid')
+  const gameOver = document.querySelector('#game-over')
   const score = document.querySelector('#score-display')
   const timeLeft = document.querySelector('#time-display')
+  const Liveship1 = document.querySelector('#live-1')
+  const Liveship2 = document.querySelector('#live-2')
+  const Liveship3 = document.querySelector('#live-3')
   let lives = document.querySelector('#lives-display')
   
   //----------------------- Game Variables ---------------------//
@@ -67,12 +70,14 @@ function init() {
   let livesCount = 3
   let inGametimer = 120
 
+  // gameOver.remove()
+  // intro.remove()
   //-------------------------- Functions ------------------------//
   // inGame Sounds 
   function playSound(e) {
     // introTrack.play()
   }
-
+  //---------------------------------------------------------
   // gameStart timer
   function gameStartTimer(e) {
     intro.remove()
@@ -94,19 +99,19 @@ function init() {
       }
     }, 1000)
   }
-
+  //----------------------------------------------------------
   // gameGrid creation & player position
   function gameGrid(startingPosition) {
     for (let i = 0; i < gridCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i
+      // cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
     cells[startingPosition].classList.add('playerShip')
   }
   gameGrid(playerPosition)
-
+  
   // enemyGrid position
   function enemyGridPosition() {
     enemiesPositionIndex.forEach(enemy => {
@@ -117,6 +122,7 @@ function init() {
   }
   enemyGridPosition()
 
+  //-----------------------------------------------------------
   // Initialise enemyMovements
   function enemyMoveActions() {
     const enemiesActions = setInterval(() => {
@@ -135,10 +141,11 @@ function init() {
 
       if (movementCount === EnemyDirectionsPattern.length) {
         movementCount = 0
-
       }
+
       enemiesPositionIndex.forSome(enemy => {
         if (enemy >= 289 && enemy <= 303) {
+          clearInterval(enemiesActions)
           setTimeout(() => {
             console.log('Game Over')
             console.log('Game Should end')
@@ -151,6 +158,7 @@ function init() {
   }
   // enemyMoveActions()
 
+  //----------------------------------------------------------
   // spaceShip Player movement
   function playerMovement(e) {
     cells[playerPosition].classList.remove('playerShip')
@@ -186,6 +194,7 @@ function init() {
     cells[playerPosition].classList.add('playerShip')
   }
 
+  //-----------------------------------------------------------
   function playerLaser(e) {
     let laserIndex
     console.log(e.keyCode)
@@ -200,8 +209,6 @@ function init() {
         cells[laserIndex].classList.remove('playerLaser')
         laserIndex -= width
         cells[laserIndex].classList.add('playerLaser')
-      } else {
-        cells[laserIndex].classList.remove('playerLaser')
       }
 
       if (cells[laserIndex].classList.contains('enemyShip')) {
@@ -221,7 +228,6 @@ function init() {
   }
 
   function enemyLaser() {
-
     let randomShots = enemiesPositionIndex[~~(Math.random() * enemiesPositionIndex.length)]
     console.log('Shot from index', randomShots)
 
@@ -236,14 +242,18 @@ function init() {
         cells[randomShots].classList.remove('enemyLaser')
         chewySound.play()
         cells[playerPosition].classList.add('explosion')
+        livesCount--
+        Liveship1.remove()
         setTimeout(() => {
           cells[playerPosition].classList.remove('explosion')
-        }, 300)
+          cells[playerPosition].classList.remove('explosion')
+        }, 400)
       } 
-    }, 1000)
+    }, 200)
   }
   enemyLaser()
 
+  //-----------------------------------------------------------
   function gameTimeLeft() {
     timeLeft.innerHTML = inGametimer
     const inGameCountDown = setInterval(() => {
@@ -257,6 +267,9 @@ function init() {
     }, 1000)
   }
   // gameTimeLeft()
+
+
+
   //----------------------- Event Listener ----------------------//
 
   docBody.addEventListener('click', playSound)

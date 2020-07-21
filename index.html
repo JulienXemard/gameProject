@@ -21,7 +21,12 @@
     <div id="score-board" class="inGame-info">
       <div id="score">Score: <span id="score-display" class="board-color">0</span></div>
       <div id="time">Time Left: <span id="time-display" class="board-color">120</span></div>
-      <div id="lives">Lives: <span id="lives-display" class="board-color">livesDisplayInner</span></div>
+      <div class="lives">
+        <p>Lives:</p>
+        <img id="live-1" class="ship" src="./assets/playerShip.png" alt="PlayerShip">
+        <img id="live-2" class="ship" src="./assets/playerShip.png" alt="PlayerShip">
+        <img id="live-3" class="ship" src="./assets/playerShip.png" alt="PlayerShip">
+      </div>
     </div>
     <!-- Game grid -->
     <div id="grid-wrapper">
@@ -29,7 +34,9 @@
     </div>
     <!-- Game Start Countdown -->
     <div id="timer-text"><strong></strong></div>
-
+    <div id="game-over">
+      <img src="assets/originalGo.png" alt="gameOver">
+    </div>
     <!-- Intro page -->
     <div id="intro" class="intro-page">
       <div id="game-logo">
@@ -50,6 +57,7 @@
   </main>
 
   <!-- All game audios -->
+  <audi id="gameOver-sound" class="player" src="./assets/Music/gamOver-sound.mp3" type="audio-wav"></audi>
   <audio id="chewy-sound" class="player" src="./assets/Music/chewy-sound.mp3"></audio>
   <audio id="explosion-sound" class="player" src="./assets/Music/explosion.wav"></audio>
   <audio id="laser-sound" class="player" src="./assets/Music/laser.wav" type="audio-wav"></audio>
