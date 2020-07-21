@@ -266,17 +266,17 @@ function init() {
   }
   enemyLaser()
 
-  function lostSoul() {
-    while (livesCount > 0) {
-      if (livesCount === 2) {
-      // LiveShip1 remove
-      } else if (livesCount === 1) {
-      //  LiveShip2 remove
-      } else if (livesCount === 0) {
-      //  LiveShip3 remove
-      }
-    }
-  }
+  // function lostSoul() {
+  //   while (livesCount > 0) {
+  //     if (livesCount === 2) {
+  //     // LiveShip1 remove
+  //     } else if (livesCount === 1) {
+  //     //  LiveShip2 remove
+  //     } else if (livesCount === 0) {
+  //     //  LiveShip3 remove
+  //     }
+  //   }
+  // }
 
   //-----------------------------------------------------------
   function gameTimeLeft() {
