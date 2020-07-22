@@ -165,12 +165,12 @@ function init() {
           setTimeout(() => {
             gameOver.classList.remove('hidden')
             gameOverSound.play()
-            console.log('Game Over')
             console.log('Game Should end')
+            console.log('Game Over func()')
           }, 200)
         }
       })
-    }, 200)
+    }, 800)
   }
   enemyMoveActions()
 
@@ -225,8 +225,10 @@ function init() {
         cells[laserIndex].classList.remove('playerLaser')
         laserIndex -= width
         cells[laserIndex].classList.add('playerLaser')
+      } else {
+        cells[laserIndex].classList.remove('playerLaser')
       }
-
+      
       if (cells[laserIndex].classList.contains('enemyShip')) {
         explosionSound.play()
         cells[laserIndex].classList.remove('enemyShip')
@@ -234,6 +236,9 @@ function init() {
         cells[laserIndex].classList.remove('playerLaser')
         scoreCount += 1000
         score.innerHTML = scoreCount.toLocaleString('en')
+        const updatedArr = enemiesPositionIndex.indexOf(laserIndex)
+        enemiesPositionIndex.splice(updatedArr, 1)
+        cells[laserIndex].classList.remove('enemyShip')
       }
 
       if (enemiesPositionIndex === 0) {
@@ -242,6 +247,7 @@ function init() {
       }
     }, 200)
   }
+  enemyLaser()
 
   function enemyLaser() {
     const randomLaser = []
@@ -276,10 +282,9 @@ function init() {
             clearTimeout(chewy)
           }, 300)
         }
-      }, 200)
+      }, 350)
     })
   }
-  enemyLaser()
 
   // function lostSoul() {
   //   while (livesCount > 0) {
