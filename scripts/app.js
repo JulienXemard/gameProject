@@ -73,11 +73,10 @@ function init() {
   let livesCount = 3
   let gameOn = false
 
-  // intro.remove()
   //-------------------------- Functions ------------------------//
   // inGame Sounds 
   function playSound(e) {
-    introTrack.play()
+    // introTrack.play()
   }
   //---------------------------------------------------------
   // gameStart timer
@@ -87,6 +86,7 @@ function init() {
     if (e.currentTarget === orignalOption) {
       emperorLaugh.play()
       scoreBoard.classList.remove('hidden')
+      gameStart()
 
     } else if (e.currentTarget === sosOption) {
       emperorGood.play()
@@ -104,6 +104,7 @@ function init() {
       }
     }, 1000)
   }
+
   //----------------------------------------------------------
   // gameGrid creation & player position
   function gameGrid(startingPosition) {
@@ -176,7 +177,7 @@ function init() {
           }, 200)
         }
       })
-    }, 800)
+    }, 1500)
   }
   // enemyMoveActions()
 
@@ -257,13 +258,9 @@ function init() {
   //-----------------------------------------------------------
   function enemyLaser() {
 
-    if (livesCount > 0) {
-      console.log(livesCount)
-    }
-
     const randomLaser = []
     
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       randomLaser.push(enemiesPositionIndex[~~(Math.random() * enemiesPositionIndex.length)])
     }
     console.log('random shot', randomLaser)
@@ -300,12 +297,17 @@ function init() {
             cells[playerPosition].classList.remove('explosion')
             clearTimeout(chewy)
           }, 200)
+
+          if (livesCount === 0) {
+            gameOver.classList.remove('hidden')
+            gameOverSound.play()
+          }
         }
       }, 350)
     })
   }
 
-  // 
+  // remove playerShip images when hit
   function lostSoul() {
     if (livesCount === 2) {
       liveShip1.remove()
@@ -331,6 +333,12 @@ function init() {
     }, 1000)
   }
   // gameTimeLeft()
+
+  function gameStart() {
+    const enemyShotLoop = setInterval(() => {
+      enemyLaser()
+    }, 6000)
+  }
 
 
   //----------------------- Event Listener ----------------------//

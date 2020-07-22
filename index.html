@@ -28,18 +28,18 @@
         <img id="live-3" class="ship hidden" src="./assets/playerShip.png" alt="PlayerShip">
       </div>
     </div>
-
-    <!-- Game Start Countdown -->
-    <div id="timer-text"><strong></strong></div>
+    <!-- Game Over -->
     <div class="game-over hidden">
       <img src="assets/originalGo.png" alt="gameOver">
     </div>
+    <!-- Game Start Countdown -->
+    <div id="timer-text"><strong></strong></div>
 
     <!-- Game grid -->
     <div id="grid-wrapper">
       <div class="grid hidden"></div>
     </div>
-    
+
     <!-- Intro page -->
     <div id="intro" class="intro-page loader">
       <div id="game-logo">
@@ -53,7 +53,7 @@
       </div>
       <div class="blink-select">Select a level</div>
       <div id="select-level">
-        <button id="original-btn" class="level">Original</button>
+        <button id="original-btn" class="level" onclick="fadeOut()">Original</button>
         <button id="sos-btn" class="level">S.O.S</button>
       </div>
     </div>
@@ -70,12 +70,6 @@
   <audio id="countDown-sound" class="player" src="./assets/Music/gameCountDown.mp3" type="audio-mp3"></audio>
 
   <!-- All Scripts-->
-  <script>
-    function introTransition() {
-      const loader = document.querySelector('#intro')
-      loader.style.opacity = '0'
-    }
-    </script>
   <script src="scripts/background.js"></script>
   <script src="scripts/app.js"></script>
 </body>

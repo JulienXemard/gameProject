@@ -56,8 +56,6 @@ div#game-logo {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: opacity 2s;
-  opacity: 1;
 }
 
 div#rules {
