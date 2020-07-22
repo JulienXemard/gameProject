@@ -21,9 +21,9 @@ function init() {
   const gameOver = document.querySelector('.game-over')
   const score = document.querySelector('#score-display')
   const timeLeft = document.querySelector('#time-display')
-  const LiveShip1 = document.querySelector('#live-1')
-  const LiveShip2 = document.querySelector('#live-2')
-  const LiveShip3 = document.querySelector('#live-3')
+  const liveShip1 = document.querySelector('#live-1')
+  const liveShip2 = document.querySelector('#live-2')
+  const liveShip3 = document.querySelector('#live-3')
   let livesLeft = document.querySelector('.hidden')
   
   //----------------------- Game Variables ---------------------//
@@ -68,7 +68,7 @@ function init() {
   let playerPosition = 314
   let timerCount = 5
   let scoreCount = 0
-  let inGametimer = 10
+  let inGametimer = 120
   let livesCount = 3
 
   // intro.remove()
@@ -104,7 +104,7 @@ function init() {
   function gameGrid(startingPosition) {
     for (let i = 0; i < gridCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i
+      // cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -153,8 +153,10 @@ function init() {
             cells[playerPosition].classList.add('explosion')
             clearTimeout(chewy)
             clearInterval(enemiesActions)
+            gameOver.classList.remove('hidden')
+            gameOverSound.play()
             console.log('enemy should disappear')
-            console.log('gameOver func()')
+            console.log('Game Should end')
           }, 500)
         }
       })
@@ -165,14 +167,14 @@ function init() {
           setTimeout(() => {
             gameOver.classList.remove('hidden')
             gameOverSound.play()
+            console.log('enemy should disappear')
             console.log('Game Should end')
-            console.log('Game Over func()')
           }, 200)
         }
       })
     }, 800)
   }
-  enemyMoveActions()
+  // enemyMoveActions()
 
   //----------------------------------------------------------
   // spaceShip Player movement
@@ -241,7 +243,7 @@ function init() {
         cells[laserIndex].classList.remove('enemyShip')
       }
 
-      if (enemiesPositionIndex === 0) {
+      if (enemiesPositionIndex.length === 0) {
         console.log('The game should stop')
         console.log('Function gameWon')
       }
@@ -249,12 +251,12 @@ function init() {
   }
   enemyLaser()
 
+  //-----------------------------------------------------------
   function enemyLaser() {
     const randomLaser = []
-
+    
     for (let i = 0; i < 5; i++) {
       randomLaser.push(enemiesPositionIndex[~~(Math.random() * enemiesPositionIndex.length)])
-
     }
     console.log('random shot', randomLaser)
 
@@ -275,8 +277,8 @@ function init() {
           cells[enemyLaser].classList.remove('enemyLaser')
           cells[playerPosition].classList.add('explosion')
           livesCount--
+          lostSoul()
           console.log(livesCount)
-          // lostSoul()
           const chewy = setTimeout(() => {
             cells[playerPosition].classList.remove('explosion')
             clearTimeout(chewy)
@@ -286,17 +288,15 @@ function init() {
     })
   }
 
-  // function lostSoul() {
-  //   while (livesCount > 0) {
-  //     if (livesCount === 2) {
-  //     // LiveShip1 remove
-  //     } else if (livesCount === 1) {
-  //     //  LiveShip2 remove
-  //     } else if (livesCount === 0) {
-  //     //  LiveShip3 remove
-  //     }
-  //   }
-  // }
+  function lostSoul() {
+    if (livesCount === 2) {
+      liveShip1.remove()
+    } else if (livesCount === 1) {
+      liveShip2.remove()
+    } else if (livesCount === 0) {
+      liveShip3.remove()
+    }
+  }
 
   //-----------------------------------------------------------
   function gameTimeLeft() {
@@ -312,7 +312,7 @@ function init() {
       }
     }, 1000)
   }
-  gameTimeLeft()
+  // gameTimeLeft()
 
 
   //----------------------- Event Listener ----------------------//
