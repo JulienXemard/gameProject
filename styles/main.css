@@ -184,6 +184,13 @@ div.lives {
   /* background-size: contain; */
 }
 
+.grid div.enemyLaser {
+  background-image: url('../assets/enemyLaser.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background-size: contain; */
+}
+
 .grid div.enemyShip {
   background-image: url('../assets/enemyShip.png');
   background-repeat: no-repeat;
@@ -193,13 +200,6 @@ div.lives {
 .grid div.trumpFace {
   background-image: url('../assets/Trump.png');
   background-repeat: no-repeat;
-  /* background-size: contain; */
-}
-
-.grid div.enemyLaser {
-  background-image: url('../assets/enemyLaser.png');
-  background-repeat: no-repeat;
-  background-position: center;
   /* background-size: contain; */
 }
 
