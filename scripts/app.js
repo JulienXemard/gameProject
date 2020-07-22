@@ -24,7 +24,6 @@ function init() {
   const liveShip1 = document.querySelector('#live-1')
   const liveShip2 = document.querySelector('#live-2')
   const liveShip3 = document.querySelector('#live-3')
-  let livesLeft = document.querySelector('.hidden')
   
   //----------------------- Game Variables ---------------------//
   // grid
@@ -68,8 +67,9 @@ function init() {
   let playerPosition = 314
   let timerCount = 5
   let scoreCount = 0
-  let inGametimer = 120
+  let inGametimer = 5
   let livesCount = 3
+  let gameOn = false
 
   // intro.remove()
   //-------------------------- Functions ------------------------//
@@ -253,6 +253,7 @@ function init() {
 
   //-----------------------------------------------------------
   function enemyLaser() {
+
     const randomLaser = []
     
     for (let i = 0; i < 5; i++) {
@@ -263,12 +264,21 @@ function init() {
     randomLaser.forEach(enemyLaser => {
       const laserMovement = setInterval(() => {
 
+        // if (!gameOn) {
+        //   clearInterval(laserMovement)
+        // }
+        // if (!cells[randomLaser]) {
+        //   clearInterval(laserMovement)
+        //   return false
+        // }
+
         if (enemyLaser + width <= 324) {
           cells[enemyLaser].classList.remove('enemyLaser')
           enemyLaser += width
           cells[enemyLaser].classList.add('enemyLaser')
         } else {
           cells[enemyLaser].classList.remove('enemyLaser')
+          clearInterval(laserMovement)
         }
       
         if (cells[enemyLaser].classList.contains('playerShip')) {
@@ -287,7 +297,7 @@ function init() {
       }, 350)
     })
   }
-
+  // 
   function lostSoul() {
     if (livesCount === 2) {
       liveShip1.remove()
@@ -308,11 +318,11 @@ function init() {
         clearInterval(inGameCountDown)
         console.log('Game should end')
         gameOver.classList.remove('hidden')
-        return
+        gameOverSound.play()
       }
     }, 1000)
   }
-  // gameTimeLeft()
+  gameTimeLeft()
 
 
   //----------------------- Event Listener ----------------------//

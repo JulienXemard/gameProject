@@ -148,7 +148,6 @@ div.lives {
   height: 90vh;
   display: flex;
   justify-content: center;
-
 }
 
 .grid {
@@ -164,7 +163,7 @@ div.lives {
 }
 
 .grid div {
-  /* border: 1px solid rgb(245, 241, 241); */
+  /* display: none; */
   flex-grow: 1;
   /* CCS-Trick to add columns evenly */
   height: calc(100% / 18);
