@@ -9,7 +9,7 @@ function init() {
   const explosionSound = document.querySelector('#explosion-sound')
   const chewySound = document.querySelector('#chewy-sound')
   const gameOverSound = document.querySelector('#gameOver-sound')
-  console.log(gameOverSound)
+
   //--------------------------------------------------------------
   const docBody = document.querySelector('body')
   const intro = document.querySelector('#intro')
@@ -19,7 +19,9 @@ function init() {
   const optionButtons = document.querySelectorAll('.level')
   const grid = document.querySelector('.grid')
   const gameOver = document.querySelector('.game-over')
+  const scoreBoard = document.querySelector('.inGame-info')
   const score = document.querySelector('#score-display')
+  console.log(scoreBoard)
   const timeLeft = document.querySelector('#time-display')
   const liveShip1 = document.querySelector('#live-1')
   const liveShip2 = document.querySelector('#live-2')
@@ -84,6 +86,7 @@ function init() {
     // select sound related to gameOption
     if (e.currentTarget === orignalOption) {
       emperorLaugh.play()
+      scoreBoard.classList.remove('hidden')
     } else if (e.currentTarget === sosOption) {
       emperorGood.play()
     }

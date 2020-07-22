@@ -113,13 +113,17 @@ div#select-level {
 
 /* -------------------------------------- */
 /* Score board info */
-div#score-board.inGame-info {
+.inGame-info {
   color: rgba(255, 255, 255, 0.886);
   font-size: 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 50px;
+}
+
+div.inGame-info.hidden {
+  display: none;
 }
 
 .board-color {
