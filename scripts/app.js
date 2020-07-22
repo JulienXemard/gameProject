@@ -158,8 +158,7 @@ function init() {
             cells[playerPosition].classList.add('explosion')
             clearTimeout(chewy)
             clearInterval(enemiesActions)
-            gameOver.classList.remove('hidden')
-            gameOverSound.play()
+            gameOverInit()
             console.log('enemy should disappear')
             console.log('Game Should end')
           }, 500)
@@ -170,8 +169,7 @@ function init() {
         if (enemy >= 306 && enemy <= 323) {
           clearInterval(enemiesActions)
           setTimeout(() => {
-            gameOver.classList.remove('hidden')
-            gameOverSound.play()
+            gameOverInit()
             console.log('enemy should disappear')
             console.log('Game Should end')
           }, 200)
@@ -298,6 +296,7 @@ function init() {
           }, 200)
 
           if (livesCount === 0) {
+            clearInterval(laserMovement)
             gameOver.classList.remove('hidden')
             gameOverSound.play()
           }
@@ -326,12 +325,17 @@ function init() {
       if (inGametimer === 0) {
         clearInterval(inGameCountDown)
         console.log('Game should end')
-        gameOver.classList.remove('hidden')
-        gameOverSound.play()
+        gameOverInit()
       }
     }, 1000)
   }
-  // gameTimeLeft()
+
+  function gameOverInit () {
+    gameOver.classList.remove('hidden')
+    gameOverSound.play()
+    clearInterval()
+    clearTimeout()
+  }
 
   function gameStart() {
     const enemyShotLoop = setInterval(() => {
