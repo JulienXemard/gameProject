@@ -77,7 +77,7 @@ function init() {
   //-------------------------- Functions ------------------------//
   // inGame Sounds 
   function playSound(e) {
-    // introTrack.play()
+    introTrack.play()
   }
   //---------------------------------------------------------
   // gameStart timer
@@ -87,8 +87,10 @@ function init() {
     if (e.currentTarget === orignalOption) {
       emperorLaugh.play()
       scoreBoard.classList.remove('hidden')
+
     } else if (e.currentTarget === sosOption) {
       emperorGood.play()
+      scoreBoard.classList.remove('hidden')
     }
     // interval to set timer conditions
     gameTimer.innerHTML = timerCount
@@ -128,7 +130,6 @@ function init() {
   //-----------------------------------------------------------
   // Initialise enemyMovements
   function enemyMoveActions() {
-    livesLeft.classList.remove('hidden')
     const enemiesActions = setInterval(() => {
       enemiesPositionIndex.forEach(enemy => {
         cells[enemy].classList.remove('enemyShip')
@@ -252,10 +253,13 @@ function init() {
       }
     }, 200)
   }
-  enemyLaser()
 
   //-----------------------------------------------------------
   function enemyLaser() {
+
+    if (livesCount > 0) {
+      console.log(livesCount)
+    }
 
     const randomLaser = []
     
@@ -291,15 +295,16 @@ function init() {
           cells[playerPosition].classList.add('explosion')
           livesCount--
           lostSoul()
-          console.log(livesCount)
+          // console.log(livesCount)
           const chewy = setTimeout(() => {
             cells[playerPosition].classList.remove('explosion')
             clearTimeout(chewy)
-          }, 300)
+          }, 200)
         }
       }, 350)
     })
   }
+
   // 
   function lostSoul() {
     if (livesCount === 2) {
@@ -325,7 +330,7 @@ function init() {
       }
     }, 1000)
   }
-  gameTimeLeft()
+  // gameTimeLeft()
 
 
   //----------------------- Event Listener ----------------------//

@@ -18,7 +18,7 @@
 <body>
   <main>
     <!-- Board Game info -->
-    <div id="score-board" class="inGame-info hidden">
+    <div class="inGame-info hidden">
       <div id="score">Score: <span id="score-display" class="board-color">0</span></div>
       <div id="time">Time Left: <span id="time-display" class="board-color">120</span></div>
       <div class="lives">
@@ -37,10 +37,11 @@
 
     <!-- Game grid -->
     <div id="grid-wrapper">
-      <div class="grid"></div>
+      <div class="grid hidden"></div>
     </div>
+    
     <!-- Intro page -->
-    <div id="intro" class="intro-page">
+    <div id="intro" class="intro-page loader">
       <div id="game-logo">
         <img src="assets/startLogo.png" alt="Space Invader Image">
       </div>
@@ -69,6 +70,12 @@
   <audio id="countDown-sound" class="player" src="./assets/Music/gameCountDown.mp3" type="audio-mp3"></audio>
 
   <!-- All Scripts-->
+  <script>
+    function introTransition() {
+      const loader = document.querySelector('#intro')
+      loader.style.opacity = '0'
+    }
+    </script>
   <script src="scripts/background.js"></script>
   <script src="scripts/app.js"></script>
 </body>
