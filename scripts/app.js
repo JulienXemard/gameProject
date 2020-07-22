@@ -179,7 +179,6 @@ function init() {
       })
     }, 1500)
   }
-  // enemyMoveActions()
 
   //----------------------------------------------------------
   // spaceShip Player movement
@@ -260,7 +259,7 @@ function init() {
 
     const randomLaser = []
     
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 8; i++) {
       randomLaser.push(enemiesPositionIndex[~~(Math.random() * enemiesPositionIndex.length)])
     }
     console.log('random shot', randomLaser)
@@ -337,6 +336,7 @@ function init() {
   function gameStart() {
     const enemyShotLoop = setInterval(() => {
       enemyLaser()
+      enemyMoveActions()
     }, 6000)
   }
 
