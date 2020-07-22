@@ -22,7 +22,7 @@ div > img {
 }
 
 /* -------------------------------------- */
-
+/* Game Over */
 .game-over {
   display: flex;
   justify-content: center;
@@ -32,8 +32,8 @@ div > img {
 div.game-over.hidden {
   display: none;
 }
-
-/* Main Game logo */
+/* -------------------------------------- */
+/* Main Game logo & Intro loader*/
 div#game-logo {
   display: flex;
   justify-content: center;
