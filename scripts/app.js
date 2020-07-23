@@ -68,6 +68,7 @@ function init() {
   //---------------------------------------------------------
   // gameStart timer
   function gameStartTimer() {
+    gameTimer.classList.remove('hidden')
     // interval to set timer conditions
     gameTimer.innerHTML = timerCount
     const countDown = setInterval(() => {
@@ -75,7 +76,7 @@ function init() {
       gameTimer.innerHTML = timerCount
       if (timerCount <= 0) {
         clearInterval(countDown)
-        gameTimer.remove()
+        gameTimer.classList.add('hidden')
         console.log('Game should start')
       }
     }, 1000)
@@ -344,16 +345,16 @@ function init() {
   }
 
   function restart() {
-    liveShip1.classList.remove('hidden')
-    liveShip2.classList.remove('hidden')
-    liveShip3.classList.remove('hidden')
     emperorGood.play()
     gameOver.classList.add('hidden')
     restartOption.classList.add('hidden')
+    liveShip1.classList.remove('hidden')
+    liveShip2.classList.remove('hidden')
+    liveShip3.classList.remove('hidden')
     gameTimer.innerHTML = ''
     inGametimer.innerHTML = ''
     timerCount.innerHTML = ''
-    livesCount.innerHTML = liveShip1, liveShip2, liveShip3
+
     timerCount = 5
     inGametimer = 125
     scoreCount = 0
@@ -370,7 +371,7 @@ function init() {
       120, 121, 122, 131, 132, 133, 134, 135, 136, 137, 138,
       139, 149, 150, 151, 152, 153, 154, 155, 156
     ]
-
+    gameStartTimer()
     gameTimeLeft()
     gameGrid(playerPosition)
     enemyGridPosition()

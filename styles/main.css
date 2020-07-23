@@ -54,6 +54,11 @@ div#game-logo {
   opacity: 0.75;
 }
 
+/* Timer */
+.timer.hidden {
+  display: none;
+}
+
 /* -------------------------------------- */
 /* Game rule & loader */
 
