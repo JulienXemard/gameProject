@@ -150,7 +150,9 @@ div#select-level,  #restart-btn{
   padding: 50px;
 }
 
-
+.ship.hidden {
+  display: none;
+}
 
 .board-color {
   color: rgb(226, 19, 19);

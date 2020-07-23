@@ -290,11 +290,12 @@ function init() {
   // remove playerShip images when hit
   function lostSoul() {
     if (livesCount === 2) {
-      liveShip1.remove()
+      liveShip1.classList.add('hidden')
+      console.log(liveShip1)
     } else if (livesCount === 1) {
-      liveShip2.remove()
+      liveShip2.classList.add('hidden')
     } else if (livesCount === 0) {
-      liveShip3.remove()
+      liveShip3.classList.add('hidden')
     }
   }
 
@@ -327,6 +328,9 @@ function init() {
   }
 
   function gameStart() {
+    liveShip1.classList.remove('hidden')
+    liveShip2.classList.remove('hidden')
+    liveShip3.classList.remove('hidden')
     intro.remove()
     emperorLaugh.play()
     gameStartTimer()
@@ -340,6 +344,9 @@ function init() {
   }
 
   function restart() {
+    liveShip1.classList.remove('hidden')
+    liveShip2.classList.remove('hidden')
+    liveShip3.classList.remove('hidden')
     emperorGood.play()
     gameOver.classList.add('hidden')
     restartOption.classList.add('hidden')
