@@ -110,7 +110,7 @@ function init() {
   //-----------------------------------------------------------
   // Initialise enemyMovements
   function enemyMoveActions() {
-    
+    clearInterval(enemiesActions)
     enemiesActions = setInterval(() => {
       enemiesPositionIndex.forEach(enemy => {
         cells[enemy].classList.remove('enemyShip')
@@ -211,6 +211,13 @@ function init() {
       laserSound.play()
       e.preventDefault()
     }
+
+    if (enemiesPositionIndex.length === 0) {
+      gameWon()
+      console.log('The game should stop')
+      console.log('Function gameWon')
+    }
+
     const laserMovement = setInterval(() => {
       if (laserIndex - width >= 0) {
         cells[laserIndex].classList.remove('playerLaser')
@@ -230,12 +237,6 @@ function init() {
         const updatedArr = enemiesPositionIndex.indexOf(laserIndex)
         enemiesPositionIndex.splice(updatedArr, 1)
         cells[laserIndex].classList.remove('enemyShip')
-      }
-
-      if (enemiesPositionIndex.length === 0) {
-        gameWon()
-        console.log('The game should stop')
-        console.log('Function gameWon')
       }
     }, 200)
   }
@@ -338,7 +339,6 @@ function init() {
   }
 
   function gameStart() {
-    gameOn = true
     intro.remove()
     emperorLaugh.play()
     gameStartTimer()
@@ -352,7 +352,12 @@ function init() {
   }
 
   function restart() {
-    gameStart()
+    emperorGood.play()
+    gameOver.classList.add('hidden')
+    restartOption.classList.add('hidden')
+
+    
+
   }
 
 
