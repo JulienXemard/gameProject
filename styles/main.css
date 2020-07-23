@@ -1,248 +1,252 @@
 /* General page */
 * {
-box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  min-height: 100vh;
-  font-family: 'Audiowide', cursive;
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-}
-
-div > img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-/* -------------------------------------- */
-/* Game Over & You win */
-.game-over {
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  animation: blinker 2s linear infinite;
-}
-
-.level.hidden {
-  display: none;
-}
-
-div.game-over.hidden {
-  display: none;
-}
-
-/* -------------------------------------- */
-/* Main Game logo & Intro loader*/
-div#game-logo {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-  opacity: 0.75;
-}
-
-/* Timer */
-.timer.hidden {
-  display: none;
-}
-
-/* -------------------------------------- */
-/* Game rule & loader */
-
-.intro-page.loader {
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} 
-
-div#rules {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 40px;
-  color: rgba(255, 255, 255, 0.845);
-}
-
-#rules > p {
-  /* border: 1px dashed rgba(255, 255, 255, 0.200); */
-  margin: 10px;
-  padding: 20px 134px;
-  font-size: 18px;
-}
-
-.action-color {
-  color: rgb(226, 19, 19);
-}
-
-/* -------------------------------------- */
-/* Select option sentence */
-.blink-select {
-  color: rgba(20, 148, 48, 0.694);
-  font-size: 25px;
-  text-align: center;
-  margin-top: 20px;
-  animation: blinker 2s linear infinite;
-}
-
-@keyframes blinker {
-  75% {
-    opacity: 1;
+  box-sizing: border-box;
   }
-  50% {
-    opacity: 0.5;
+  
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    min-height: 100vh;
+    font-family: 'Audiowide', cursive;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
   }
-  25% {
-    opacity: 0;
+  
+  div > img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
   }
-}
+  
+  /* -------------------------------------- */
+  /* Game Over & You win */
+  .game-over, .win {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: blinker 2s linear infinite;
+  }
+  
+  .level.hidden {
+    display: none;
+  }
 
-/* -------------------------------------- */
-/* Game option buttons */
-div#select-level,  #restart-btn{
-  display: flex;
-  justify-content: center;
-  transform: scale(1.1);
-}
+  #restart-win.level.hidden {
+    display: none;
+  }
+  
+  div.game-over.hidden {
+    display: none;
+  }
 
-#original-btn:hover, #restart-btn:hover {
-  transition: all 0.2 ease;
-  background-color: rgba(254, 254, 254, 0.79);
-  color: black;
-  outline: none;
-}
-
-.level {
-  font-family: 'Audiowide', cursive;
-  background-color: transparent;
-  font-size: 20px;
-  color: white;
-  margin: 50px 50px;
-  padding: 20px 62px;
-  outline: none;
-  /* border: 1px dashed rgba(255, 255, 255, 0.200); */
-} 
-
-/* -------------------------------------- */
-/* Score board info */
-.inGame-info {
-  color: rgba(255, 255, 255, 0.886);
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 50px;
-}
-
-.ship.hidden {
-  display: none;
-}
-
-.board-color {
-  color: rgb(226, 19, 19);
-}
-
-div#timer-text {
-  color: rgba(20, 148, 48, 0.872);
-  font-family: 'Audiowide', cursive;
-  font-size: 150px;
-  text-align: center;
-}
-
-div.lives {
-  display: flex;
-  align-items: center;
-}
-
-.ship {
-  margin-left: 10px;
-}
-
-/* -------------------------------------- */
-/* Game grid */
-.grid-wrapper {
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-}
-
-.grid {
-  background-color: transparent;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  height: 100%;
-  height: 1000px;
-  width: 1000px;
-}
-
-.grid div {
-  /* display: none; */
-  flex-grow: 1;
-  /* CCS-Trick to add columns evenly */
-  height: calc(100% / 18);
-  width: calc(100% / 18);
-}
-
-.grid div.playerShip {
-  background-image: url('../assets/playerShip.png');
-  background-repeat: no-repeat;
-  /* background-size: contain; */
-}
-
-.grid div.playerLaser {
-  background-image: url('../assets/playerLaser.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  /* background-size: contain; */
-}
-
-.grid div.enemyLaser {
-  background-image: url('../assets/enemyLaser.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  /* background-size: contain; */
-}
-
-.grid div.enemyShip {
-  background-image: url('../assets/enemyShip.png');
-  background-repeat: no-repeat;
-  /* background-size: contain; */
-}
-
-.grid div.trumpFace {
-  background-image: url('../assets/Trump.png');
-  background-repeat: no-repeat;
-  /* background-size: contain; */
-}
-
-.grid div.explosion {
-  background-image: url('../assets/explosion.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  /* background-size: contain; */
-}
-
+  
+  /* -------------------------------------- */
+  /* Main Game logo & Intro loader*/
+  div#game-logo {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    opacity: 0.75;
+  }
+  
+  /* Timer */
+  .timer.hidden {
+    display: none;
+  }
+  
+  /* -------------------------------------- */
+  /* Game rule & loader */
+  
+  .intro-page.loader {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } 
+  
+  div#rules {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    color: rgba(255, 255, 255, 0.845);
+  }
+  
+  #rules > p {
+    /* border: 1px dashed rgba(255, 255, 255, 0.200); */
+    margin: 10px;
+    padding: 20px 134px;
+    font-size: 18px;
+  }
+  
+  .action-color {
+    color: rgb(226, 19, 19);
+  }
+  
+  /* -------------------------------------- */
+  /* Select option sentence */
+  .blink-select {
+    color: rgba(20, 148, 48, 0.694);
+    font-size: 25px;
+    text-align: center;
+    margin-top: 20px;
+    animation: blinker 2s linear infinite;
+  }
+  
+  @keyframes blinker {
+    75% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    25% {
+      opacity: 0;
+    }
+  }
+  
+  /* -------------------------------------- */
+  /* Game option buttons */
+  div#select-level, #restart-btn {
+    display: flex;
+    justify-content: center;
+    transform: scale(1.1);
+  }
+  
+  #original-btn:hover, #restart-btn:hover {
+    transition: all 0.2 ease;
+    background-color: rgba(255, 255, 255, 0.886);
+    color: black;
+    outline: none;
+  }
+  
+  .level {
+    font-family: 'Audiowide', cursive;
+    background-color: transparent;
+    font-size: 20px;
+    color: white;
+    margin: 50px 50px;
+    padding: 20px 62px;
+    outline: none;
+    /* border: 1px dashed rgba(255, 255, 255, 0.200); */
+  } 
+  
+  /* -------------------------------------- */
+  /* Score board info */
+  .inGame-info {
+    color: rgba(255, 255, 255, 0.886);
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+  }
+  
+  .ship.hidden {
+    display: none;
+  }
+  
+  .board-color {
+    color: rgb(226, 19, 19);
+  }
+  
+  div#timer-text {
+    color: rgba(20, 148, 48, 0.872);
+    font-family: 'Audiowide', cursive;
+    font-size: 150px;
+    text-align: center;
+  }
+  
+  div.lives {
+    display: flex;
+    align-items: center;
+  }
+  
+  .ship {
+    margin-left: 10px;
+  }
+  
+  /* -------------------------------------- */
+  /* Game grid */
+  .grid-wrapper {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .grid {
+    background-color: transparent;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+    height: 1000px;
+    width: 1000px;
+  }
+  
+  .grid div {
+    /* display: none; */
+    flex-grow: 1;
+    /* CCS-Trick to add columns evenly */
+    height: calc(100% / 18);
+    width: calc(100% / 18);
+  }
+  
+  .grid div.playerShip {
+    background-image: url('../assets/playerShip.png');
+    background-repeat: no-repeat;
+    /* background-size: contain; */
+  }
+  
+  .grid div.playerLaser {
+    background-image: url('../assets/playerLaser.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-size: contain; */
+  }
+  
+  .grid div.enemyLaser {
+    background-image: url('../assets/enemyLaser.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-size: contain; */
+  }
+  
+  .grid div.enemyShip {
+    background-image: url('../assets/enemyShip.png');
+    background-repeat: no-repeat;
+    /* background-size: contain; */
+  }
+  
+  .grid div.trumpFace {
+    background-image: url('../assets/Trump.png');
+    background-repeat: no-repeat;
+    /* background-size: contain; */
+  }
+  
+  .grid div.explosion {
+    background-image: url('../assets/explosion.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-size: contain; */
+  }

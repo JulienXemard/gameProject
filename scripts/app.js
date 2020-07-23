@@ -24,15 +24,16 @@ function init() {
   const liveShip2 = document.querySelector('#live-2')
   const liveShip3 = document.querySelector('#live-3')
   const restartOption = document.querySelector('.level')
+  const restartWin = document.querySelector('#restart-win')
   
   //----------------------- Game Variables ---------------------//
-  // grid
+  // Grid
   const width = 18
   const gridCount = width * width
   const cells = []
   //------------------------------
-  // player & enemy grid set up
-  // selecting the arr index for enemies
+  // Player & enemy grid set up
+  // Selecting enemies index pos. in grid arr
   let enemiesPositionIndex = [
     5, 6, 7, 8, 9, 10, 11, 12,
     22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 65, 66, 130,
@@ -44,6 +45,7 @@ function init() {
     120, 121, 122, 131, 132, 133, 134, 135, 136, 137, 138,
     139, 149, 150, 151, 152, 153, 154, 155, 156
   ]
+  // Momevement arr pattern
   const EnemyDirectionsPattern = [
     -1, -1, 
     width, 
@@ -63,7 +65,7 @@ function init() {
   //-------------------------- Functions ------------------------//
   // inGame Sounds 
   function playSound() {
-    introTrack.play()
+    // introTrack.play()
   }
   //---------------------------------------------------------
   // gameStart timer
@@ -77,7 +79,7 @@ function init() {
       if (timerCount <= 0) {
         clearInterval(countDown)
         gameTimer.classList.add('hidden')
-        console.log('Game should start')
+        // console.log('Game should start')
       }
     }, 1000)
   }
@@ -144,8 +146,8 @@ function init() {
             clearTimeout(chewy)
             clearInterval(enemiesActions)
             gameOverInit()
-            console.log('enemy should disappear')
-            console.log('Game Should end')
+            // console.log('enemy should disappear')
+            // console.log('Game Should end')
           }, 500)
         }
       })
@@ -155,8 +157,8 @@ function init() {
           clearInterval(enemiesActions)
           setTimeout(() => {
             gameOverInit()
-            console.log('enemy should disappear')
-            console.log('Game Should end')
+            // console.log('enemy should disappear')
+            // console.log('Game Should end')
           }, 200)
         }
       })
@@ -212,8 +214,8 @@ function init() {
 
     if (enemiesPositionIndex.length === 0) {
       gameWon()
-      console.log('The game should stop')
-      console.log('Function gameWon')
+      // console.log('The game should stop')
+      // console.log('Function gameWon')
     }
 
     const laserMovement = setInterval(() => {
@@ -307,7 +309,7 @@ function init() {
       timeLeft.innerHTML = inGametimer
       if (inGametimer === 0) {
         clearInterval(inGameCountDown)
-        console.log('Game should end')
+        // console.log('Game should end')
         gameOverInit()
       }
     }, 1000)
@@ -329,7 +331,8 @@ function init() {
 
   function gameWon() {
     clearInterval(inGameCountDown)
-    restartOption.classList.remove('hidden')
+    restartWin.classList.remove('hidden')
+    winText.classList.remove('hidden2')
     introTrack.pause()
     victorySound.play()
   }
