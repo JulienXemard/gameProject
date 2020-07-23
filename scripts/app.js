@@ -63,7 +63,7 @@ function init() {
   //-------------------------- Functions ------------------------//
   // inGame Sounds 
   function playSound() {
-    // introTrack.play()
+    introTrack.play()
   }
   //---------------------------------------------------------
   // gameStart timer
@@ -99,7 +99,6 @@ function init() {
   function enemyGridPosition() {
     enemiesPositionIndex.forEach(enemy => {
       cells[enemy].classList.add('enemyShip')
-      // cells[enemy].classList.add('trumpFace')
       // console.log(enemy)
     })
   }
@@ -328,6 +327,13 @@ function init() {
     gameOverSound.play()
   }
 
+  function gameWon() {
+    clearInterval(inGameCountDown)
+    restartOption.classList.remove('hidden')
+    introTrack.pause()
+    victorySound.play()
+  }
+
   function gameStart() {
     liveShip1.classList.remove('hidden')
     liveShip2.classList.remove('hidden')
@@ -351,9 +357,6 @@ function init() {
     liveShip1.classList.remove('hidden')
     liveShip2.classList.remove('hidden')
     liveShip3.classList.remove('hidden')
-    gameTimer.innerHTML = ''
-    inGametimer.innerHTML = ''
-    timerCount.innerHTML = ''
 
     timerCount = 5
     inGametimer = 125
@@ -379,13 +382,6 @@ function init() {
       enemyLaser()
       enemyMoveActions()
     }, 6000)
-  }
-
-  function gameWon() {
-    clearInterval(inGameCountDown)
-    restartOption.classList.remove('hidden')
-    introTrack.pause()
-    victorySound.play()
   }
 
 
