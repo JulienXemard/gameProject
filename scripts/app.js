@@ -2,7 +2,6 @@ function init() {
   //------------------------- DOM elements -----------------------//
   // All tracks
   const introTrack = document.querySelector('#intro-track')
-  const countDownSound = document.querySelector('#countDown-sound')
   const emperorLaugh = document.querySelector('#emperor-laugh')
   const emperorGood = document.querySelector('#emperor-good')
   const laserSound = document.querySelector('#laser-sound')
@@ -24,7 +23,7 @@ function init() {
   const liveShip1 = document.querySelector('#live-1')
   const liveShip2 = document.querySelector('#live-2')
   const liveShip3 = document.querySelector('#live-3')
-  let restartOption = document.querySelector('.level')
+  const restartOption = document.querySelector('.level')
   
   //----------------------- Game Variables ---------------------//
   // grid
@@ -61,11 +60,9 @@ function init() {
   let enemyShotLoop
   let enemiesActions
   let inGameCountDown
-  let gameOn = false
-
   //-------------------------- Functions ------------------------//
   // inGame Sounds 
-  function playSound(e) {
+  function playSound() {
     // introTrack.play()
   }
   //---------------------------------------------------------
@@ -111,6 +108,7 @@ function init() {
   // Initialise enemyMovements
   function enemyMoveActions() {
     clearInterval(enemiesActions)
+    
     enemiesActions = setInterval(() => {
       enemiesPositionIndex.forEach(enemy => {
         cells[enemy].classList.remove('enemyShip')
@@ -315,10 +313,10 @@ function init() {
   }
 
   function gameOverInit() {
-    gameOn = false
     clearInterval(enemyShotLoop)
     clearInterval(enemiesActions)
     clearInterval(inGameCountDown)
+    
     enemiesPositionIndex.forEach(enemy => {
       cells[enemy].classList.remove('enemyShip')
     })
@@ -326,16 +324,6 @@ function init() {
     gameOver.classList.remove('hidden')
     restartOption.classList.remove('hidden')
     gameOverSound.play()
-  }
-
-  function gameWon() {
-    let victorySound = 1
-    if (victorySound < 0) {
-      victorySound.play()
-      victorySound--
-    } else {
-      victorySound.pause()
-    }
   }
 
   function gameStart() {
@@ -364,8 +352,18 @@ function init() {
     scoreCount = 0
     livesCount = 3
     movementCount = 0
+    enemiesPositionIndex = [
+      5, 6, 7, 8, 9, 10, 11, 12,
+      22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 65, 66, 130,
+      39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 67,
+      56, 57, 58, 59, 60, 61, 62, 77, 78, 79, 63, 64, 68,
+      82, 83, 84, 85, 76, 75, 80, 81, 69, 86, 74, 87, 92,
+      92, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104,
+      105, 93, 111, 112, 113, 114, 115, 116, 117, 118, 119,
+      120, 121, 122, 131, 132, 133, 134, 135, 136, 137, 138,
+      139, 149, 150, 151, 152, 153, 154, 155, 156
+    ]
 
-    gameStartTimer()
     gameTimeLeft()
     gameGrid(playerPosition)
     enemyGridPosition()
@@ -375,6 +373,12 @@ function init() {
     }, 6000)
   }
 
+  function gameWon() {
+    clearInterval(inGameCountDown)
+    restartOption.classList.remove('hidden')
+    introTrack.pause()
+    victorySound.play()
+  }
 
 
   //----------------------- Event Listener ----------------------//
