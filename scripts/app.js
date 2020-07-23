@@ -355,9 +355,24 @@ function init() {
     emperorGood.play()
     gameOver.classList.add('hidden')
     restartOption.classList.add('hidden')
+    gameTimer.innerHTML = ''
+    inGametimer.innerHTML = ''
+    timerCount.innerHTML = ''
+    livesCount.innerHTML = liveShip1, liveShip2, liveShip3
+    timerCount = 5
+    inGametimer = 125
+    scoreCount = 0
+    livesCount = 3
+    movementCount = 0
 
-    
-
+    gameStartTimer()
+    gameTimeLeft()
+    gameGrid(playerPosition)
+    enemyGridPosition()
+    enemyShotLoop = setInterval(() => {
+      enemyLaser()
+      enemyMoveActions()
+    }, 6000)
   }
 
 
