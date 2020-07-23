@@ -22,7 +22,7 @@ div > img {
 }
 
 /* -------------------------------------- */
-/* Game Over */
+/* Game Over & You win */
 .game-over {
   position: fixed;
   z-index: 99;
@@ -37,9 +37,15 @@ div > img {
   animation: blinker 2s linear infinite;
 }
 
+.level.hidden {
+  display: none;
+}
+
 div.game-over.hidden {
   display: none;
 }
+
+
 /* -------------------------------------- */
 /* Main Game logo & Intro loader*/
 div#game-logo {
@@ -110,13 +116,13 @@ div#rules {
 
 /* -------------------------------------- */
 /* Game option buttons */
-div#select-level {
+div#select-level,  #restart-btn{
   display: flex;
   justify-content: center;
   transform: scale(1.1);
 }
 
-#original-btn:hover, #sos-btn:hover {
+#original-btn:hover, #restart-btn:hover {
   transition: all 0.2 ease;
   background-color: rgba(254, 254, 254, 0.79);
   color: black;
@@ -145,9 +151,7 @@ div#select-level {
   padding: 50px;
 }
 
-div.inGame-info.hidden {
-  display: none;
-}
+
 
 .board-color {
   color: rgb(226, 19, 19);

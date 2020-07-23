@@ -9,23 +9,22 @@ function init() {
   const explosionSound = document.querySelector('#explosion-sound')
   const chewySound = document.querySelector('#chewy-sound')
   const gameOverSound = document.querySelector('#gameOver-sound')
+  const victorySound = document.querySelector('#victory-sound')
 
   //--------------------------------------------------------------
   const docBody = document.querySelector('body')
   const intro = document.querySelector('#intro')
   const orignalOption = document.querySelector('#original-btn')
-  const sosOption = document.querySelector('#sos-btn')
   const gameTimer = document.querySelector('#timer-text')
-  const optionButtons = document.querySelectorAll('.level')
   const grid = document.querySelector('.grid')
   const gameOver = document.querySelector('.game-over')
   const scoreBoard = document.querySelector('.inGame-info')
   const score = document.querySelector('#score-display')
-  console.log(scoreBoard)
   const timeLeft = document.querySelector('#time-display')
   const liveShip1 = document.querySelector('#live-1')
   const liveShip2 = document.querySelector('#live-2')
   const liveShip3 = document.querySelector('#live-3')
+  let restartOption = document.querySelector('.level')
   
   //----------------------- Game Variables ---------------------//
   // grid
@@ -46,18 +45,6 @@ function init() {
     120, 121, 122, 131, 132, 133, 134, 135, 136, 137, 138,
     139, 149, 150, 151, 152, 153, 154, 155, 156
   ]
-  // let enemiesPositionIndex = [
-  //   1, 19, 37, 55, 73, 91, 109, 127, 145,
-  //   20, 38, 39, 58, 77, 96, 115, 134, 153,
-  //   135, 117, 99, 81, 63, 45, 27, 9, 191,
-  //   11, 29, 47, 65, 83, 101, 119, 137, 155,
-  //   13, 14, 15, 16, 34, 52, 70, 88, 106, 124,
-  //   142, 160, 156, 157, 158, 159, 181, 182,
-  //   183, 184, 185, 186, 187, 188, 189, 190,
-  //   192, 193, 194, 195, 196, 12, 199, 200,
-  //   201, 202, 203, 204, 205, 206, 207, 208,
-  //   209, 210, 211, 212, 213, 214
-  // ]
   const EnemyDirectionsPattern = [
     -1, -1, 
     width, 
@@ -69,8 +56,11 @@ function init() {
   let playerPosition = 314
   let timerCount = 5
   let scoreCount = 0
-  let inGametimer = 5
+  let inGametimer = 125
   let livesCount = 3
+  let enemyShotLoop
+  let enemiesActions
+  let inGameCountDown
   let gameOn = false
 
   //-------------------------- Functions ------------------------//
@@ -80,18 +70,7 @@ function init() {
   }
   //---------------------------------------------------------
   // gameStart timer
-  function gameStartTimer(e) {
-    intro.remove()
-    // select sound related to gameOption
-    if (e.currentTarget === orignalOption) {
-      emperorLaugh.play()
-      scoreBoard.classList.remove('hidden')
-      gameStart()
-
-    } else if (e.currentTarget === sosOption) {
-      emperorGood.play()
-      scoreBoard.classList.remove('hidden')
-    }
+  function gameStartTimer() {
     // interval to set timer conditions
     gameTimer.innerHTML = timerCount
     const countDown = setInterval(() => {
@@ -131,7 +110,8 @@ function init() {
   //-----------------------------------------------------------
   // Initialise enemyMovements
   function enemyMoveActions() {
-    const enemiesActions = setInterval(() => {
+    
+    enemiesActions = setInterval(() => {
       enemiesPositionIndex.forEach(enemy => {
         cells[enemy].classList.remove('enemyShip')
       })
@@ -149,11 +129,18 @@ function init() {
         movementCount = 0
       }
 
+      if (livesCount === 0) {
+        gameOverInit()
+        clearInterval(enemiesActions)
+      }
+
       enemiesPositionIndex.some(enemy => {
         if (cells[enemy].classList.contains('playerShip')) {
           chewySound.play()
           cells[playerPosition].classList.remove('playerShip')
           cells[enemy].classList.remove('enemyShip')
+          clearInterval(enemiesActions)
+
           const chewy = setTimeout(() => {
             cells[playerPosition].classList.add('explosion')
             clearTimeout(chewy)
@@ -164,7 +151,7 @@ function init() {
           }, 500)
         }
       })
-
+      
       enemiesPositionIndex.some(enemy => {
         if (enemy >= 306 && enemy <= 323) {
           clearInterval(enemiesActions)
@@ -246,6 +233,7 @@ function init() {
       }
 
       if (enemiesPositionIndex.length === 0) {
+        gameWon()
         console.log('The game should stop')
         console.log('Function gameWon')
       }
@@ -264,15 +252,7 @@ function init() {
 
     randomLaser.forEach(enemyLaser => {
       const laserMovement = setInterval(() => {
-
-        // if (!gameOn) {
-        //   clearInterval(laserMovement)
-        // }
-        // if (!cells[randomLaser]) {
-        //   clearInterval(laserMovement)
-        //   return false
-        // }
-
+      
         if (enemyLaser + width <= 324) {
           cells[enemyLaser].classList.remove('enemyLaser')
           enemyLaser += width
@@ -296,9 +276,12 @@ function init() {
           }, 200)
 
           if (livesCount === 0) {
+            gameOverInit()
             clearInterval(laserMovement)
-            gameOver.classList.remove('hidden')
-            gameOverSound.play()
+          }
+
+          if (gameOverInit) {
+            clearInterval(laserMovement)
           }
         }
       }, 350)
@@ -319,7 +302,7 @@ function init() {
   //-----------------------------------------------------------
   function gameTimeLeft() {
     timeLeft.innerHTML = inGametimer
-    const inGameCountDown = setInterval(() => {
+    inGameCountDown = setInterval(() => {
       inGametimer--
       timeLeft.innerHTML = inGametimer
       if (inGametimer === 0) {
@@ -330,26 +313,55 @@ function init() {
     }, 1000)
   }
 
-  function gameOverInit () {
+  function gameOverInit() {
+    gameOn = false
+    clearInterval(enemyShotLoop)
+    clearInterval(enemiesActions)
+    clearInterval(inGameCountDown)
+    enemiesPositionIndex.forEach(enemy => {
+      cells[enemy].classList.remove('enemyShip')
+    })
+  
     gameOver.classList.remove('hidden')
+    restartOption.classList.remove('hidden')
     gameOverSound.play()
-    clearInterval()
-    clearTimeout()
+  }
+
+  function gameWon() {
+    let victorySound = 1
+    if (victorySound < 0) {
+      victorySound.play()
+      victorySound--
+    } else {
+      victorySound.pause()
+    }
   }
 
   function gameStart() {
-    const enemyShotLoop = setInterval(() => {
+    gameOn = true
+    intro.remove()
+    emperorLaugh.play()
+    gameStartTimer()
+    gameTimeLeft()
+
+    scoreBoard.classList.remove('hidden')
+    enemyShotLoop = setInterval(() => {
       enemyLaser()
       enemyMoveActions()
     }, 6000)
   }
 
+  function restart() {
+    gameStart()
+  }
+
+
 
   //----------------------- Event Listener ----------------------//
 
   docBody.addEventListener('click', playSound)
-  orignalOption.addEventListener('click', gameStartTimer)
-  sosOption.addEventListener('click', gameStartTimer)
+  orignalOption.addEventListener('click', gameStart)
+  restartOption.addEventListener('click', restart)
   document.addEventListener('keydown', playerMovement)
   document.addEventListener('keydown', playerLaser)
 

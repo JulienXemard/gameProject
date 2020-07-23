@@ -39,7 +39,8 @@
     <!-- Game Over -->
     <div class="game-over hidden">
       <img src="assets/originalGo.png" alt="gameOver">
-    </div>  
+      <button id="restart-btn" class="level hidden">Restart</button>
+    </div>
 
     <!-- Intro page -->
     <div id="intro" class="intro-page loader">
@@ -52,15 +53,15 @@
         <br/>- Use <span class="action-color">'W'</span> to move <span class="action-color">'Up' </span> &  <span class="action-color"> 'S'</span> to move <span class="action-color">'Down'</span><br/>
         <br/>- Use <span class="action-color">'Space Bar'</span> to <span class="action-color">'Shoot'</span> them all !</p>
       </div>
-      <div class="blink-select">Select a level</div>
+      <div class="blink-select">Click on the button</div>
       <div id="select-level">
-        <button id="original-btn" class="level" >Original</button>
-        <button id="sos-btn" class="level">S.O.S</button>
+        <button id="original-btn" class="level" >you will...</button>
       </div>
     </div>
   </main>
 
   <!-- All game audios -->
+  <audio id="victory-sound" class="player" src="./assets/Music/victory-sound.mp3" type="audio-mp3"></audio>
   <audio id="gameOver-sound" class="player" src="./assets/Music/gamOver-sound.mp3" type="audio-mp3"></audi>
   <audio id="chewy-sound" class="player" src="./assets/Music/chewy-sound.mp3"></audio>
   <audio id="explosion-sound" class="player" src="./assets/Music/explosion.wav"></audio>
