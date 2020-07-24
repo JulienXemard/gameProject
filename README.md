@@ -91,7 +91,7 @@ Each scenarios will offer a restart option.
 ---
 ## Used Resources
 
-* **A special thank you to Charlotte Morgan for her helped me compiled it all & transform difficult moments in fun times**
+* **A special, thank you, to Charlotte Morgan for her guidance ; she transformed difficult moments into fun times**
 * **Starfield background created in 2004 by Kurt Grigg.** |
 [Stack Overflow](https://stackoverflow.com/questions/31680639/non-canvas-javascript-starfield-animation-in-latest-explorer-not-smooth)
 
