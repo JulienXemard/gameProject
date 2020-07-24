@@ -24,7 +24,10 @@ function init() {
   const liveShip2 = document.querySelector('#live-2')
   const liveShip3 = document.querySelector('#live-3')
   const restartOption = document.querySelector('.level')
-  const restartWin = document.querySelector('#restart-win')
+  const restartWinBtn = document.querySelector('#restart-win')
+  const winText = document.querySelector('#congrats')
+  const win = document.querySelector('.win')
+  console.log(win)
   
   //----------------------- Game Variables ---------------------//
   // Grid
@@ -57,7 +60,7 @@ function init() {
   let playerPosition = 314
   let timerCount = 5
   let scoreCount = 0
-  let inGametimer = 125
+  let inGametimer = 95
   let livesCount = 3
   let enemyShotLoop
   let enemiesActions
@@ -65,7 +68,7 @@ function init() {
   //-------------------------- Functions ------------------------//
   // inGame Sounds 
   function playSound() {
-    // introTrack.play()
+    introTrack.play()
   }
   //---------------------------------------------------------
   // gameStart timer
@@ -86,6 +89,7 @@ function init() {
 
   //----------------------------------------------------------
   // gameGrid creation & player position
+  // Create div in HTML & Push|Assign to empty arr
   function gameGrid(startingPosition) {
     for (let i = 0; i < gridCount; i++) {
       const cell = document.createElement('div')
@@ -98,6 +102,10 @@ function init() {
   gameGrid(playerPosition)
   
   // enemyGrid position
+  /* 
+  1. forEach to iterate though enemy arr
+  2. Add CSS & Enemy pic
+  */
   function enemyGridPosition() {
     enemiesPositionIndex.forEach(enemy => {
       cells[enemy].classList.add('enemyShip')
@@ -110,21 +118,23 @@ function init() {
   // Initialise enemyMovements
   function enemyMoveActions() {
     clearInterval(enemiesActions)
-    
+    // Interval to init the movement
     enemiesActions = setInterval(() => {
+      // Iterate each enemy to remove them from grid
       enemiesPositionIndex.forEach(enemy => {
         cells[enemy].classList.remove('enemyShip')
       })
-  
+      // map method to implement movement pattern
       enemiesPositionIndex = enemiesPositionIndex.map(enemy => {
         return enemy + EnemyDirectionsPattern[movementCount]
       })
-  
+      // Iterate each enemy to add them back in new position
       enemiesPositionIndex.forEach(enemy => {
         cells[enemy].classList.add('enemyShip')
       })
       movementCount++
 
+      // if all movement pattern steps have been done | reset
       if (movementCount === EnemyDirectionsPattern.length) {
         movementCount = 0
       }
@@ -134,24 +144,24 @@ function init() {
         clearInterval(enemiesActions)
       }
 
+      // If any collide = gameOver
       enemiesPositionIndex.some(enemy => {
         if (cells[enemy].classList.contains('playerShip')) {
           chewySound.play()
           cells[playerPosition].classList.remove('playerShip')
           cells[enemy].classList.remove('enemyShip')
           clearInterval(enemiesActions)
-
-          const chewy = setTimeout(() => {
-            cells[playerPosition].classList.add('explosion')
-            clearTimeout(chewy)
-            clearInterval(enemiesActions)
-            gameOverInit()
+          cells[playerPosition].classList.add('explosion')
+          setTimeout(() => {
+            cells[playerPosition].classList.remove('explosion')
             // console.log('enemy should disappear')
             // console.log('Game Should end')
-          }, 500)
+          }, 200)
+          clearInterval(enemiesActions)
+          gameOverInit()
         }
       })
-      
+      // If any reach the surface = gameOver
       enemiesPositionIndex.some(enemy => {
         if (enemy >= 306 && enemy <= 323) {
           clearInterval(enemiesActions)
@@ -162,13 +172,14 @@ function init() {
           }, 200)
         }
       })
-    }, 1500)
+    }, 900)
   }
 
   //----------------------------------------------------------
   // spaceShip Player movement
   function playerMovement(e) {
     cells[playerPosition].classList.remove('playerShip')
+    // Define x & y axis limit + conditions
     const x = playerPosition % width
     const y = ~~(playerPosition / width)
     // console.log(e.keyCode)
@@ -211,13 +222,13 @@ function init() {
       laserSound.play()
       e.preventDefault()
     }
-
+    // if all enemies (arr) are shot = gameWon
     if (enemiesPositionIndex.length === 0) {
       gameWon()
       // console.log('The game should stop')
       // console.log('Function gameWon')
     }
-
+    // Player laser = Similar logic than movement
     const laserMovement = setInterval(() => {
       if (laserIndex - width >= 0) {
         cells[laserIndex].classList.remove('playerLaser')
@@ -226,7 +237,7 @@ function init() {
       } else {
         cells[laserIndex].classList.remove('playerLaser')
       }
-      
+      // Case of collision if laser contains|hit enemy div.
       if (cells[laserIndex].classList.contains('enemyShip')) {
         explosionSound.play()
         cells[laserIndex].classList.remove('enemyShip')
@@ -235,6 +246,7 @@ function init() {
         scoreCount += 1000
         score.innerHTML = scoreCount.toLocaleString('en')
         const updatedArr = enemiesPositionIndex.indexOf(laserIndex)
+        // update arr w/. splice method to remove enemy
         enemiesPositionIndex.splice(updatedArr, 1)
         cells[laserIndex].classList.remove('enemyShip')
       }
@@ -245,15 +257,15 @@ function init() {
   function enemyLaser() {
 
     const randomLaser = []
-    
-    for (let i = 0; i < 8; i++) {
+    // Loop to assign a num of random lasers per enemy
+    for (let i = 0; i < 12; i++) {
       randomLaser.push(enemiesPositionIndex[~~(Math.random() * enemiesPositionIndex.length)])
     }
-    console.log('random shot', randomLaser)
-
+    // console.log('random shot', randomLaser)
+    // Initiate laser movements & conditions
     randomLaser.forEach(enemyLaser => {
       const laserMovement = setInterval(() => {
-      
+        // Similar logic than player actions
         if (enemyLaser + width <= 324) {
           cells[enemyLaser].classList.remove('enemyLaser')
           enemyLaser += width
@@ -262,26 +274,21 @@ function init() {
           cells[enemyLaser].classList.remove('enemyLaser')
           clearInterval(laserMovement)
         }
-      
+        // Case of hits player vs enemy lasers
         if (cells[enemyLaser].classList.contains('playerShip')) {
           chewySound.play()
           clearInterval(laserMovement)
           cells[enemyLaser].classList.remove('enemyLaser')
           cells[playerPosition].classList.add('explosion')
+          // timeOut to impletement explosion picture
+          setTimeout(() => {
+            cells[playerPosition].classList.remove('explosion')
+          }, 200)
           livesCount--
           lostSoul()
           // console.log(livesCount)
-          const chewy = setTimeout(() => {
-            cells[playerPosition].classList.remove('explosion')
-            clearTimeout(chewy)
-          }, 200)
-
           if (livesCount === 0) {
             gameOverInit()
-            clearInterval(laserMovement)
-          }
-
-          if (gameOverInit) {
             clearInterval(laserMovement)
           }
         }
@@ -289,7 +296,7 @@ function init() {
     })
   }
 
-  // remove playerShip images when hit
+  // Remove playerShip livesImg when hit
   function lostSoul() {
     if (livesCount === 2) {
       liveShip1.classList.add('hidden')
@@ -302,6 +309,7 @@ function init() {
   }
 
   //-----------------------------------------------------------
+  // inGame Timer w/. condition
   function gameTimeLeft() {
     timeLeft.innerHTML = inGametimer
     inGameCountDown = setInterval(() => {
@@ -314,7 +322,7 @@ function init() {
       }
     }, 1000)
   }
-
+  // GameOver
   function gameOverInit() {
     clearInterval(enemyShotLoop)
     clearInterval(enemiesActions)
@@ -328,15 +336,20 @@ function init() {
     restartOption.classList.remove('hidden')
     gameOverSound.play()
   }
-
+  // Game Won
   function gameWon() {
+    clearInterval(enemyShotLoop)
+    clearInterval(enemiesActions)
     clearInterval(inGameCountDown)
-    restartWin.classList.remove('hidden')
-    winText.classList.remove('hidden2')
+
     introTrack.pause()
     victorySound.play()
+    win.classList.remove('hidden')
+    restartWinBtn.classList.remove('hidden')
+    winText.classList.remove('hidden')
   }
-
+  //-----------------------------------------------------------
+  // Game exe function = Start & Replay
   function gameStart() {
     liveShip1.classList.remove('hidden')
     liveShip2.classList.remove('hidden')
@@ -356,13 +369,16 @@ function init() {
   function restart() {
     emperorGood.play()
     gameOver.classList.add('hidden')
+    winText.classList.add('hidden')
+    win.classList.add('hidden')
+    restartWinBtn.classList.add('hidden')
     restartOption.classList.add('hidden')
     liveShip1.classList.remove('hidden')
     liveShip2.classList.remove('hidden')
     liveShip3.classList.remove('hidden')
 
     timerCount = 5
-    inGametimer = 125
+    inGametimer = 95
     scoreCount = 0
     livesCount = 3
     movementCount = 0
@@ -387,12 +403,12 @@ function init() {
     }, 6000)
   }
 
-
   //----------------------- Event Listener ----------------------//
 
   docBody.addEventListener('click', playSound)
   orignalOption.addEventListener('click', gameStart)
   restartOption.addEventListener('click', restart)
+  restartWinBtn.addEventListener('click', restart)
   document.addEventListener('keydown', playerMovement)
   document.addEventListener('keydown', playerLaser)
 
