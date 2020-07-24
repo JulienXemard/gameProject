@@ -23,7 +23,7 @@ The list of games options were:
 * Space Invaders
 <br/>
 
-The reason I choose Space Invaders is due to the immersive experience I wanted to offer.
+The reason I choose Space Invaders is due to the immersive experience I wanted to offer.<br/>
 My researches allowed me to find a Javascript Starfield background that respected the brief and fitted my theme DNA.
 
 ---
