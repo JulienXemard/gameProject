@@ -16,9 +16,9 @@
 ## Technologies:
 
 <br/>
-* Vanilla Javascript (ES6)
-* CSS
-* HTML5
+| Vanilla Javascript (ES6)
+| CSS
+| HTML5
 <br/>
 
 ---
@@ -41,31 +41,35 @@ The list of games options were:
 
 I chose Space Invaders as I really wanted to create an different 2D immersive experience.<br/>
 My researches led me to find a .js script background that perfectly fitted both the brief & my idea (source below).<br/>
+.<br/>
 ![Starfielf](./assets/Screenshot-game.png "Immersive-2DIMG")
 <br/>
 With a month of coding experience, Space Invaders game logic was a tough yet interesting challenge.<br/>
-The project allowed me to re-use all methods taught during our first month which allowed me to realise the following statement:<br/>
+The project allowed me to re-use all methods taught during our first month which also led me to realise the following statement:<br/>
 <br/>
 
 * It is one thing to understand it when an experienced programmer demonstrate & another to do it on your own.<br/>
 <br/>
-This experience allowed to realise that the frustration moments are the constant & that the solutions to them are intellectually rewarding.<br/>
+I realised that the frustration moments are the constant & that the solutions to them are intellectually rewarding.<br/>
 
 ---
 ## Game Instructions
 
 **Player Controls**
-* Use **A** to move **Left** & **D** to move **Right**<br/>
-* Use **W** to move **Up** & **S** to move **Down**<br/>
+* Use **A** to move **⬅** & **D** to move **➡**<br/>
+* Use **W** to move **⬆** & **S** to move **⬇**<br/>
 * Use **Space Bar** to kill them all 👽!<br/>
 <br/>
 
 ![gameOver](./assets/Screenshot-gameOver.png "ganeOverIMG")
 
-**Game Rules**
-* If the enemy spaceships collide with yours - Game Over<br/>
-* If some enemy spaceships reach the surface - Game Over<br/>
-* If enemy lasers hit you 3 times - Game Over<br/>
+**Game Over Cases**
+* If the enemy spaceships collide with yours<br/>
+* If some enemy spaceships reach the surface<br/>
+* If enemy lasers hit you 3 times<br/>
+<br/>
+
+**Game Win Case**
 * If you eliminate all enemies within the given period<br/>
 <br/>
 
@@ -78,7 +82,7 @@ Each scenarios will offer a restart option.
 
 * The first difficulty was to figure out a way to initiate a movement pattern for each enemy.<br/>
 * Some difficulties applying the loop to have all enemies shooting randomly as a lot of intervals are involved.
-* The restart option, per scenarios, which could have been simplified if I would have planned this project better.
+* The restart option, per scenario, which could have been simplified if I would have planned this project better.
 
 ## Comments
 
