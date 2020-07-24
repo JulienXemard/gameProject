@@ -16,7 +16,7 @@
 ## Technologies:
 
 <br/>
-| Vanilla Javascript (ES6)
+Vanilla Javascript (ES6)
 | CSS
 | HTML5
 <br/>
@@ -40,9 +40,11 @@ The list of games options were:
 <br/>
 
 I chose Space Invaders as I really wanted to create an different 2D immersive experience.<br/>
-My researches led me to find a .js script background that perfectly fitted both the brief & my idea (source below).<br/>
-.<br/>
+My researches led me to find a .js script background that perfectly fitted both the brief & my idea.<br/>
+<br/>
+
 ![Starfielf](./assets/Screenshot-game.png "Immersive-2DIMG")
+
 <br/>
 With a month of coding experience, Space Invaders game logic was a tough yet interesting challenge.<br/>
 The project allowed me to re-use all methods taught during our first month which also led me to realise the following statement:<br/>
@@ -91,7 +93,7 @@ Each scenarios will offer a restart option.
 ---
 ## Used Resources
 
-* **A special, thank you, to Charlotte Morgan for her guidance ; she transformed difficult moments into fun times**
+* **Thank you, to Charlotte Morgan for her guidance ; she transformed difficult moments into fun ones**
 * **Starfield background created in 2004 by Kurt Grigg.** |
 [Stack Overflow](https://stackoverflow.com/questions/31680639/non-canvas-javascript-starfield-animation-in-latest-explorer-not-smooth)
 
