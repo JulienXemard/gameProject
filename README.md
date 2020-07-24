@@ -5,16 +5,26 @@
 
 The game aims to offer a unique immersive experience using:
 <br/>
-* Javascript
+* Vanilla Javascript (ES6)
 * CSS
-* HTML 
+* HTML5
 <br/>
 
-A .js file will be used has a background which has been updated to fit the game DNA and latest ECMAScript rules (student comprehension).
+The technical brief (below) was to build an HTML game with CSS & Vanilla Javascript.
+The list of games options were:
+<br/>
+* Battleship
+* Connect 4
+* Frogger
+* Mastermind
+* Pac-man
+* Snake
+* Tetris
+* Space Invaders
+<br/>
 
-The game will offer 2 different difficulty levels and will be fully animated.
-
-This project aims to be fun yet should include the right methods recently acquired.
+The reason I choose Space Invaders is due to the immersive experience I wanted to offer.
+My researches allowed me to find a Javascript Starfield background that respected the brief and fitted my theme DNA.
 
 ---
 
