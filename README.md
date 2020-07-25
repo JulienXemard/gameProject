@@ -43,7 +43,6 @@ I chose Space Invaders as I wanted to create a different 2D | 3D immersive exper
 My researches led me to find a .js script background that perfectly fitted both the brief & my idea.<br/>
 <br/>
 
-<br/>
 
 ![Starfielf](./assets/Screenshot-game.png "Immersive-2DIMG")
 
@@ -86,7 +85,7 @@ Each scenarios will offer a restart option.
 
 * The first difficulty was to figure out a way to initiate a movement pattern for each enemy.<br/>
 * Some difficulties applying the loop to have all enemies shooting randomly as a lot of intervals are involved.
-* The restart option, per scenario, which could have been simplified if I would have planned this project better.
+* The restart function could have been simplified if I would have better planned this project.
 
 ## Comments
 
