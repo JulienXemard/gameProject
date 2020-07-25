@@ -3,7 +3,7 @@
 ---
 ## Technical brief
 
-* ** 7 Days to render the game in the browser**
+* **7 Days to render the game in the browser**
 * **Design logic for winning** & **visually display which player won**
 * **Include separate HTML / CSS / JavaScript files**
 * Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
