@@ -39,8 +39,10 @@ The list of games options were:
 * Space Invaders
 <br/>
 
-I chose Space Invaders as I really wanted to create an different 2D immersive experience.<br/>
+I chose Space Invaders as I wanted to create a different 2D | 3D immersive experience.<br/>
 My researches led me to find a .js script background that perfectly fitted both the brief & my idea.<br/>
+<br/>
+
 <br/>
 
 ![Starfielf](./assets/Screenshot-game.png "Immersive-2DIMG")
