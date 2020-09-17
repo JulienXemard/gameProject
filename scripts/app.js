@@ -96,6 +96,7 @@ function init() {
       // cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
+      console.log(cells)
     }
     cells[startingPosition].classList.add('playerShip')
   }
