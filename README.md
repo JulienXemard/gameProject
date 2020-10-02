@@ -1,5 +1,7 @@
 
-# General Assembly SEI-49 | Project 1: Space Invader 
+# General Assembly SEI-49 | Project 1: X-Wings Invaders
+![demo](http://g.recordit.co/KbHdfk5Yww.gif)
+
 ---
 ## Technical brief
 
