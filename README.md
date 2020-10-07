@@ -26,7 +26,7 @@ Vanilla Javascript (ES6)
 ---
 ## Overview
 
-* The game is hosted [here](https://julienxemard.github.io/gameProject-1/)
+* The game is hosted [here](https://julienxemard.github.io/gameProject/)
 * Else, kindly clone or fork the repository & open the index.html.
 
 The list of games options were:
