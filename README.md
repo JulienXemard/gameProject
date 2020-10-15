@@ -86,12 +86,14 @@ Each scenarios will offer a restart option.
 ## Challenges
 
 * The first difficulty was to figure out a way to initiate a movement pattern for each enemy.<br/>
-* Some difficulties applying the loop to have all enemies shooting randomly as a lot of intervals are involved.
+* Some difficulties applying the loop to have all enemies shooting randomly as a lot of intervals are involved.<br/>
 * The restart function could have been simplified if I would have better planned this project.
 
-## Comments
+## Wins
 
-**Any suggestions to improve my code will be studied meticulously**
+* Implementing a 3D space wrap was incredibly rewarding as it offers such a cool immersive experience.<br/>
+* The restart functionalities gave me a serious headhache! Therefore, thinking it through was a clear win. <br/>
+* Figuring out the enemies firing function was really interesting.
 
 ---
 ## Used Resources
