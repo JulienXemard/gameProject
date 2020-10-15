@@ -18,7 +18,7 @@
 ## Technologies:
 
 <br/>
-Vanilla Javascript (ES6)
+Vanilla JavaScript (ES6)
 | CSS
 | HTML5
 <br/>
